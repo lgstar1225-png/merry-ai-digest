@@ -1,42 +1,52 @@
 [
   {
     "name": "Matt Wolfe",
-    "url": "https://www.youtube.com/@mreflow"
+    "url": "https://www.youtube.com/@mreflow",
+    "id": "UChpleBmo18P08aKCIgti38g"
   },
   {
     "name": "AI Explained",
-    "url": "https://www.youtube.com/@aiexplained-official"
+    "url": "https://www.youtube.com/@aiexplained-official",
+    "id": "UCNJ1Ymd5yFuUPtn21xtRbbw"
   },
   {
     "name": "Matthew Berman",
-    "url": "https://www.youtube.com/@matthew_berman"
+    "url": "https://www.youtube.com/@matthew_berman",
+    "id": "UCawZsQWqfGSbCI5yjkdVkTA"
   },
   {
     "name": "Wes Roth",
-    "url": "https://www.youtube.com/@WesRoth"
+    "url": "https://www.youtube.com/@WesRoth",
+    "id": "UCqcbQf6yw5KzRoDDcZ_wBSw"
   },
   {
     "name": "Two Minute Papers",
-    "url": "https://www.youtube.com/@TwoMinutePapers"
+    "url": "https://www.youtube.com/@TwoMinutePapers",
+    "id": "UCbfYPyITQ-7l4upoX8nvctg"
   },
   {
     "name": "The AI Grid",
-    "url": "https://www.youtube.com/@TheAIGrid"
+    "url": "https://www.youtube.com/@TheAIGrid",
+    "id": "UCbY9xX3_jW5c2fjlZVBI4cg"
   },
   {
     "name": "The AI Advantage",
-    "url": "https://www.youtube.com/@AIAdvantage"
+    "url": "https://www.youtube.com/@AIAdvantage",
+    "id": "UCHhYXsLBEVVnbvsq57n1MTQ"
   },
   {
     "name": "MattVidPro",
-    "url": "https://www.youtube.com/@MattVidPro"
+    "url": "https://www.youtube.com/@MattVidPro",
+    "id": "UC5Wz4fFacYuON6IKbhSa7Zw"
   },
   {
     "name": "Yannic Kilcher",
-    "url": "https://www.youtube.com/@YannicKilcher"
+    "url": "https://www.youtube.com/@YannicKilcher",
+    "id": "UCZHmQk67mSJgfCCTn7xBfew"
   },
   {
     "name": "Fireship",
-    "url": "https://www.youtube.com/@Fireship"
+    "url": "https://www.youtube.com/@Fireship",
+    "id": "UCsBjURrPoezykLs9EqgamOA"
   }
 ]
