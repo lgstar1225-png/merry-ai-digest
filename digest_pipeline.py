@@ -188,6 +188,14 @@ def main():
               '본문 카드 5개는 각각 무엇인지, 왜 관심을 받는지, 어떻게 쓰는지, '
               '알아둘 점, 한 줄 정리를 설명하세요. '
               '자료가 부족하면 부족하다고 명시하고 확인되지 않은 광고 문구를 넣지 마세요.\n\n' + source)
+    if mode == 'GITHUB':
+        prompt += (
+            '\nGitHub 모드에서는 AI 또는 자동화와 관련된 서로 다른 도구를 최대 5개 고르세요. '
+            '각 카드 제목에 도구의 실제 저장소 이름을 적고 한 카드에 한 도구씩 설명하세요. '
+            '확실한 도구가 5개 미만이면 나머지 카드는 관련 도구를 확인하지 못했다고 쓰세요. '
+            '확인하지 못한 도구의 기능이나 업무 활용법은 만들어내지 마세요. '
+            '전체 인기 목록에서 고른 도구임을 밝히고 AI 분야 공식 순위라고 부르지 마세요.'
+        )
     client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
     contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE') else prompt
     response = client.models.generate_content(model='gemini-3.5-flash-lite', contents=contents,
