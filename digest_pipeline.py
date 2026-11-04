@@ -108,15 +108,23 @@ def font(size, bold=False):
     return ImageFont.truetype(path, size)
 
 def wrapped(draw, text, fnt, width, max_lines):
-    lines, line = [], ''
-    for ch in str(text).replace('\r', ''):
-        if ch == '\n':
-            lines.append(line); line = ''; continue
-        if draw.textbbox((0, 0), line + ch, font=fnt)[2] > width and line:
-            lines.append(line); line = ch
-        else:
-            line += ch
-    if line: lines.append(line)
+    lines = []
+    for paragraph in str(text).replace('\r', '').split('\n'):
+        line = ''
+        for word in paragraph.split():
+            candidate = f'{line} {word}' if line else word
+            if draw.textbbox((0, 0), candidate, font=fnt)[2] <= width:
+                line = candidate
+                continue
+            if line:
+                lines.append(line)
+                line = ''
+            for ch in word:
+                if line and draw.textbbox((0, 0), line + ch, font=fnt)[2] > width:
+                    lines.append(line)
+                    line = ''
+                line += ch
+        lines.append(line)
     if len(lines) > max_lines:
         lines = lines[:max_lines]
         while lines[-1] and draw.textbbox((0, 0), lines[-1] + '…', font=fnt)[2] > width:
@@ -153,10 +161,15 @@ def main():
     mode = os.getenv('TARGET_MODE', 'DIRECT_URL')
     source, sources = get_source(mode, os.getenv('YOUTUBE_URL', ''))
     (OUT / 'sources.json').write_text(json.dumps(sources, ensure_ascii=False, indent=2), encoding='utf-8')
-    prompt = ('아래 원문에만 근거하여 한국어로 실무용 카드뉴스를 작성하세요. 추측을 사실처럼 말하지 마세요. '
-              '광고/제휴가 확인되지 않았다면 광고 문구를 임의로 만들지 마세요. '
-              '본문 카드 정확히 5개, 각 카드 제목 30자 이내, 설명 150자 이내. '
-              '출처가 불확실한 가격이나 기능은 확정하지 마세요.\n\n' + source)
+    prompt = ('첨부된 영상 또는 아래 자료에 근거해 한국어 카드뉴스를 작성하세요. '
+              '10살 어린이와 60대 초보자도 이해할 수 있도록 쉬운 말과 짧은 문장을 사용하세요. '
+              '어려운 용어가 꼭 필요하면 바로 옆에 쉬운 뜻을 설명하세요. '
+              '각 카드에 한 가지 핵심만 담고, 필요하면 생활 속 쉬운 예를 들어주세요. '
+              '자료의 주장과 확인된 사실을 구별하고, 알 수 없는 내용은 추측하지 마세요. '
+              '제목은 30자 이내, 각 본문은 100자 이내로 작성하세요. '
+              '본문 카드 5개는 각각 무엇인지, 왜 관심을 받는지, 어떻게 쓰는지, '
+              '알아둘 점, 한 줄 정리를 설명하세요. '
+              '자료가 부족하면 부족하다고 명시하고 확인되지 않은 광고 문구를 넣지 마세요.\n\n' + source)
     client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
     contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE') else prompt
     response = client.models.generate_content(model='gemini-3.5-flash-lite', contents=contents,
