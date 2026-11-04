@@ -171,6 +171,11 @@ def main():
             z.write(p, p.name)
         for p in (OUT / 'sources.json', OUT / 'digest.json'):
             z.write(p, p.name)
+    if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE'):
+        summary_dir = Path('summaries')
+        summary_dir.mkdir(exist_ok=True)
+        summary_file = summary_dir / (sources[0]['video_id'] + '.json')
+        summary_file.write_text(json.dumps({'source': sources[0], 'summary': data}, ensure_ascii=False, indent=2), encoding='utf-8')
     print('Created 6 cards and ZIP.')
 
 if __name__ == '__main__':
