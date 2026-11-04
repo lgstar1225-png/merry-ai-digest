@@ -96,7 +96,7 @@ def github_sources():
 def get_source(mode, url):
     if mode == 'DIRECT_URL':
         vid = video_id(url)
-        return transcript(vid), [{'url': f'https://www.youtube.com/watch?v={vid}', 'video_id': vid}]
+        return '', [{'url': f'https://www.youtube.com/watch?v={vid}', 'video_id': vid}]
     if mode == 'LATEST_AI_YOUTUBE':
         for published, vid, title, name in rss_candidates():
             try:
@@ -163,7 +163,8 @@ def main():
               '본문 카드 정확히 5개, 각 카드 제목 30자 이내, 설명 150자 이내. '
               '출처가 불확실한 가격이나 기능은 확정하지 마세요.\n\n' + source)
     client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
-    response = client.models.generate_content(model='gemini-3.8-flash', contents=prompt,
+    contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode == 'DIRECT_URL' else prompt
+    response = client.models.generate_content(model='gemini-3.8-flash', contents=contents,
         config=types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=SCHEMA))
     data = json.loads(response.text)
     if len(data.get('cards', [])) != 5:
