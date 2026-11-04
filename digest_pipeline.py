@@ -10,6 +10,7 @@ from urllib.parse import parse_qs, urlparse
 from zipfile import ZipFile, ZIP_DEFLATED
 
 import requests
+from bs4 import BeautifulSoup
 from google import genai
 from google.genai import types
 from PIL import Image, ImageDraw, ImageFont
@@ -77,17 +78,34 @@ def rss_candidates():
     return sorted(candidates, reverse=True)
 
 def github_sources():
-    # Recently created + most stars is a proxy, NOT GitHub's official weekly trending ranking.
-    since = (datetime.now(timezone.utc) - timedelta(days=7)).date().isoformat()
-    resp = requests.get('https://api.github.com/search/repositories',
-        params={'q': f'topic:artificial-intelligence created:>={since}', 'sort': 'stars', 'order': 'desc', 'per_page': 10},
-        headers={'Accept': 'application/vnd.github+json', 'Authorization': f"Bearer {os.environ['GITHUB_TOKEN']}"} if os.getenv('GITHUB_TOKEN') else {'Accept': 'application/vnd.github+json'}, timeout=TIMEOUT)
+    url = 'https://github.com/trending?since=weekly'
+    resp = requests.get(url, headers={'User-Agent': 'MERRY-AI-DIGEST'}, timeout=TIMEOUT)
     resp.raise_for_status()
-    repos = resp.json().get('items', [])[:5]
-    if not repos:
-        raise ValueError('최근 7일 생성된 대상 저장소가 없습니다.')
-    sources = [{'name': r['full_name'], 'url': r['html_url'], 'description': r.get('description') or '', 'stars': r['stargazers_count'], 'created_at': r['created_at']} for r in repos]
-    return '최근 7일 생성된 AI 저장소를 현재 스타 수로 정렬한 참고 목록입니다. 공식 GitHub Trending 순위가 아닙니다.\n' + json.dumps(sources, ensure_ascii=False), sources
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    sources = []
+    for article in soup.select('article.Box-row'):
+        link = article.select_one('h2 a')
+        if not link or not link.get('href'):
+            continue
+        name = link['href'].strip('/')
+        if name.count('/') != 1:
+            continue
+        description = article.select_one('p')
+        sources.append({
+            'name': name,
+            'url': 'https://github.com/' + name,
+            'description': description.get_text(' ', strip=True) if description else '',
+            'weekly_trending_position': len(sources) + 1,
+        })
+    if not sources:
+        raise ValueError('GitHub 주간 인기 목록을 읽지 못했습니다.')
+    instructions = (
+        '다음은 GitHub 공식 주간 인기 전체 목록입니다. '
+        'AI나 자동화와 관련 있는 도구를 우선 골라 우리 업무에 쓸 수 있는지 쉽게 설명하세요. '
+        '설명에서 확인되지 않는 기능은 추측하지 마세요. '
+        '이 목록은 전체 주간 인기 목록이며 AI 도구만의 순위가 아닙니다.\n'
+    )
+    return instructions + json.dumps(sources, ensure_ascii=False), sources
 
 def get_source(mode, url):
     if mode == 'DIRECT_URL':
