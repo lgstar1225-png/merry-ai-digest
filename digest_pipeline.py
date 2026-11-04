@@ -17,11 +17,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 
 OUT = Path('output_digest')
 OUT.mkdir(exist_ok=True)
-CHANNELS = {
-    'Two Minute Papers': 'UCbfYPyITQ-7l4upoX8nvctg',
-    'Fireship': 'UCsBjURrPoezykLs9EqgamOA',
-    'Yannic Kilcher': 'UCZHmQk67mSJgfCCTn7xBfew',
-}
+CHANNELS = {item['name']: item['id'] for item in json.loads(Path('channels.json').read_text(encoding='utf-8'))}
 TIMEOUT = 15
 SCHEMA = {
     'type': 'object',
@@ -77,7 +73,7 @@ def rss_candidates():
                 if vid and published:
                     candidates.append((published, vid, title, name))
         except (requests.RequestException, ET.ParseError) as exc:
-            print(f'RSS skip {name}: {exc}')
+            raise RuntimeError(f'채널 RSS 조회 실패: {name}') from exc
     return sorted(candidates, reverse=True)
 
 def github_sources():
@@ -98,12 +94,11 @@ def get_source(mode, url):
         vid = video_id(url)
         return '', [{'url': f'https://www.youtube.com/watch?v={vid}', 'video_id': vid}]
     if mode == 'LATEST_AI_YOUTUBE':
-        for published, vid, title, name in rss_candidates():
-            try:
-                return f'채널: {name}\n제목: {title}\n게시일: {published}\n자막:\n{transcript(vid)}', [{'url': f'https://www.youtube.com/watch?v={vid}', 'channel': name, 'published': published, 'title': title}]
-            except Exception as exc:
-                print(f'Transcript unavailable {vid}: {exc}')
-        raise ValueError('탐색한 영상에서 사용 가능한 자막을 확보하지 못했습니다.')
+        candidates = rss_candidates()
+        if not candidates:
+            raise ValueError('채널의 최신 영상을 가져오지 못했습니다.')
+        published, vid, title, name = candidates[0]
+        return f'채널: {name}\n제목: {title}\n게시일: {published}', [{'url': f'https://www.youtube.com/watch?v={vid}', 'video_id': vid, 'channel': name, 'published': published, 'title': title}]
     if mode == 'GITHUB':
         return github_sources()
     raise ValueError('지원하지 않는 TARGET_MODE입니다.')
@@ -163,7 +158,7 @@ def main():
               '본문 카드 정확히 5개, 각 카드 제목 30자 이내, 설명 150자 이내. '
               '출처가 불확실한 가격이나 기능은 확정하지 마세요.\n\n' + source)
     client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
-    contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode == 'DIRECT_URL' else prompt
+    contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE') else prompt
     response = client.models.generate_content(model='gemini-3.5-flash-lite', contents=contents,
         config=types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=SCHEMA))
     data = json.loads(response.text)
