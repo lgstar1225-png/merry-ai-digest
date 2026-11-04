@@ -204,11 +204,17 @@ def main():
     if len(data.get('cards', [])) != 5:
         raise ValueError('Gemini 응답에 본문 카드 5개가 없습니다.')
     (OUT / 'digest.json').write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
+    report_lines = [data['title'], data['subtitle'], '']
+    for index, card in enumerate(data['cards'], 1):
+        report_lines.extend([f"{index}. {card['head']}", card['desc'], ''])
+    report_lines.append('출처')
+    report_lines.extend(source['url'] for source in sources)
+    (OUT / 'report.txt').write_text('\n'.join(report_lines) + '\n', encoding='utf-8')
     render(data, sources)
     with ZipFile(OUT / 'merry_ai_digest.zip', 'w', ZIP_DEFLATED) as z:
         for p in sorted(OUT.glob('*.png')):
             z.write(p, p.name)
-        for p in (OUT / 'sources.json', OUT / 'digest.json'):
+        for p in (OUT / 'sources.json', OUT / 'digest.json', OUT / 'report.txt'):
             z.write(p, p.name)
     if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE'):
         summary_dir = Path('summaries')
