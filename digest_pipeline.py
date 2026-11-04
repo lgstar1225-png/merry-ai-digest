@@ -163,7 +163,7 @@ def main():
               '본문 카드 정확히 5개, 각 카드 제목 30자 이내, 설명 150자 이내. '
               '출처가 불확실한 가격이나 기능은 확정하지 마세요.\n\n' + source)
     client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
-    response = client.models.generate_content(model='gemini-2.5-flash', contents=prompt,
+    response = client.models.generate_content(model='gemini-3.8-flash', contents=prompt,
         config=types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=SCHEMA))
     data = json.loads(response.text)
     if len(data.get('cards', [])) != 5:
