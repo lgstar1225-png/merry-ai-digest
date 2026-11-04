@@ -84,7 +84,7 @@ def github_sources():
     # Recently created + most stars is a proxy, NOT GitHub's official weekly trending ranking.
     since = (datetime.now(timezone.utc) - timedelta(days=7)).date().isoformat()
     resp = requests.get('https://api.github.com/search/repositories',
-        params={'q': f'(topic:artificial-intelligence OR topic:ai-agents) created:>={since}', 'sort': 'stars', 'order': 'desc', 'per_page': 10},
+        params={'q': f'topic:artificial-intelligence created:>={since}', 'sort': 'stars', 'order': 'desc', 'per_page': 10},
         headers={'Accept': 'application/vnd.github+json', 'Authorization': f"Bearer {os.environ['GITHUB_TOKEN']}"} if os.getenv('GITHUB_TOKEN') else {'Accept': 'application/vnd.github+json'}, timeout=TIMEOUT)
     resp.raise_for_status()
     repos = resp.json().get('items', [])[:5]
