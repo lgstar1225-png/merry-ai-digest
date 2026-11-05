@@ -3,6 +3,9 @@ import json
 import os
 import re
 import textwrap
+import time
+
+import httpx
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -173,6 +176,21 @@ def render(data, sources):
         d.text((75, 975), 'MERRY AI DIGEST  |  원문 출처: sources.json', font=font(24), fill='#737e89')
         img.save(OUT / f'card_{i:02d}.png')
 
+def generate_with_retry(client, contents, attempts=3):
+    """Retry transient network failures without hiding a final failure."""
+    for attempt in range(attempts):
+        try:
+            return client.models.generate_content(
+                model='gemini-3.5-flash-lite', contents=contents,
+                config=types.GenerateContentConfig(
+                    response_mime_type='application/json', response_json_schema=SCHEMA))
+        except (httpx.TransportError, TimeoutError) as exc:
+            if attempt + 1 == attempts:
+                raise RuntimeError('Gemini 연결에 반복 실패했습니다. 잠시 후 다시 시도하세요.') from exc
+            delay = 2 ** attempt
+            print(f'Gemini 연결 오류: {delay}초 후 재시도합니다.', flush=True)
+            time.sleep(delay)
+
 def main():
     if not os.getenv('GEMINI_API_KEY'):
         raise ValueError('GEMINI_API_KEY secret이 없습니다.')
@@ -198,8 +216,8 @@ def main():
         )
     client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
     contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE') else prompt
-    response = client.models.generate_content(model='gemini-3.5-flash-lite', contents=contents,
-        config=types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=SCHEMA))
+    response = generate_with_retry(client, contents)
+
     data = json.loads(response.text)
     if len(data.get('cards', [])) != 5:
         raise ValueError('Gemini 응답에 본문 카드 5개가 없습니다.')
