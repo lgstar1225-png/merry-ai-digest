@@ -3,6 +3,7 @@ import json
 import os
 import re
 import textwrap
+import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -10,9 +11,10 @@ from urllib.parse import parse_qs, urlparse
 from zipfile import ZipFile, ZIP_DEFLATED
 
 import requests
+import httpx
 from bs4 import BeautifulSoup
 from google import genai
-from google.genai import types
+from google.genai import errors, types
 from PIL import Image, ImageDraw, ImageFont
 from youtube_transcript_api import YouTubeTranscriptApi
 
@@ -173,6 +175,47 @@ def render(data, sources):
         d.text((75, 975), 'MERRY AI DIGEST  |  원문 출처: sources.json', font=font(24), fill='#737e89')
         img.save(OUT / f'card_{i:02d}.png')
 
+def generate_with_retry(client, contents):
+    """일시적인 오류는 다시 시도하고, 응답 형식도 확인한다."""
+    config = types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=SCHEMA)
+
+    def request():
+        for attempt in range(4):
+            try:
+                return client.models.generate_content(model='gemini-3.5-flash-lite', contents=contents, config=config)
+            except (httpx.TransportError, TimeoutError, errors.ServerError, errors.ClientError) as exc:
+                code = getattr(exc, 'code', None)
+                if isinstance(exc, errors.ClientError) and code != 429:
+                    print(f'Gemini 요청 실패: 요청 오류 {code}입니다. 다시 시도하지 않습니다.', flush=True)
+                    raise
+                if attempt == 3:
+                    fallback = os.getenv('GEMINI_FALLBACK_MODEL', '').strip()
+                    if code in (429, 503) and fallback:
+                        print('기본 모델 4번째 시도 실패: 0초 후 예비 모델로 1번 시도합니다.', flush=True)
+                        try:
+                            return client.models.generate_content(model=fallback, contents=contents, config=config)
+                        except Exception as fallback_exc:
+                            print(f'예비 모델 요청 최종 실패: {type(fallback_exc).__name__}, 오류 코드 {getattr(fallback_exc, "code", "없음")}', flush=True)
+                            raise
+                    print(f'Gemini 요청 최종 실패: {type(exc).__name__}, 오류 코드 {code if code is not None else "없음"}', flush=True)
+                    raise
+                delay = (5, 15, 45)[attempt]
+                print(f'Gemini {attempt + 1}번째 시도 실패: {delay}초 기다린 뒤 {attempt + 2}번째 시도합니다.', flush=True)
+                time.sleep(delay)
+
+    for attempt in range(2):
+        response = request()
+        try:
+            data = json.loads(response.text)
+            if not isinstance(data, dict) or not isinstance(data.get('cards'), list) or len(data['cards']) != 5:
+                raise ValueError('카드가 5개가 아닙니다.')
+            return data
+        except (ValueError, TypeError) as exc:
+            if attempt == 1:
+                print('Gemini 응답 최종 실패: JSON이 잘못됐거나 카드가 5개가 아닙니다.', flush=True)
+                raise ValueError('Gemini 응답이 잘못됐거나 카드가 5개가 아닙니다.') from exc
+            print('Gemini 응답이 잘못됐거나 카드가 5개가 아닙니다. 0초 후 2번째 요청을 합니다.', flush=True)
+
 def main():
     if not os.getenv('GEMINI_API_KEY'):
         raise ValueError('GEMINI_API_KEY secret이 없습니다.')
@@ -196,13 +239,9 @@ def main():
             '확인하지 못한 도구의 기능이나 업무 활용법은 만들어내지 마세요. '
             '전체 인기 목록에서 고른 도구임을 밝히고 AI 분야 공식 순위라고 부르지 마세요.'
         )
-    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'], http_options=types.HttpOptions(timeout=300000))
     contents = [prompt, types.Part.from_uri(file_uri=sources[0]['url'], mime_type='video/mp4')] if mode in ('DIRECT_URL', 'LATEST_AI_YOUTUBE') else prompt
-    response = client.models.generate_content(model='gemini-3.5-flash-lite', contents=contents,
-        config=types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=SCHEMA))
-    data = json.loads(response.text)
-    if len(data.get('cards', [])) != 5:
-        raise ValueError('Gemini 응답에 본문 카드 5개가 없습니다.')
+    data = generate_with_retry(client, contents)
     (OUT / 'digest.json').write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
     report_lines = [data['title'], data['subtitle'], '']
     for index, card in enumerate(data['cards'], 1):

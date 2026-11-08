@@ -17,7 +17,7 @@ permissions:
 jobs:
   digest:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,6 +32,7 @@ jobs:
       - name: Generate digest
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL }}
           TARGET_MODE: ${{ inputs.target_mode }}
           YOUTUBE_URL: ${{ inputs.youtube_url }}
           GITHUB_TOKEN: ${{ github.token }}
