@@ -262,7 +262,7 @@ def env_number(name, default):
         return default
 
 
-def weekly_candidates(now=None, days=7):
+def weekly_candidates(now=None, days=7, count=None, skip_ids=()):
     """채널 RSS에서 최근 영상(쇼츠 제외)을 조회수 순으로 고른다. 실패한 채널은 건너뛴다."""
     now = now or datetime.now(timezone.utc)
     since = now - timedelta(days=days)
@@ -281,7 +281,7 @@ def weekly_candidates(now=None, days=7):
             published = entry.findtext('a:published', namespaces=FEED_NS)
             link = entry.find('a:link', FEED_NS)
             href = link.get('href', '') if link is not None else ''
-            if not vid or not published or '/shorts/' in href:
+            if not vid or not published or '/shorts/' in href or vid in skip_ids:
                 continue
             try:
                 pub = datetime.fromisoformat(published.replace('Z', '+00:00'))
@@ -304,7 +304,7 @@ def weekly_candidates(now=None, days=7):
         if counts.get(v['channel'], 0) < per_channel:
             picked.append(v)
             counts[v['channel']] = counts.get(v['channel'], 0) + 1
-    return picked[:max(1, env_number('WEEKLY_COUNT', 5))], failed
+    return picked[:max(1, count or env_number('WEEKLY_COUNT', 5))], failed
 
 
 def weekly_prompt(video):
@@ -350,7 +350,7 @@ def score_total(data):
 def render_weekly(data, video, path):
     img = Image.new('RGB', (1080, 1080), '#f8f9fa')
     d = ImageDraw.Draw(img)
-    d.text((75, 80), 'MERRY AI DIGEST  |  이번 주 영상 핵심 한 장', font=font(27, True), fill='#00865b')
+    d.text((75, 80), 'MERRY AI DIGEST  |  영상 핵심 한 장', font=font(27, True), fill='#00865b')
     draw_block(d, data['title'], (75, 180), font(48, True), '#151b22', 930, 3, 15)
     draw_block(d, data['cards'][0]['desc'], (75, 420), font(34), '#34404d', 930, 9, 16)
     footer = f"{video['channel']}  ·  조회수 {video['views']:,}회  ·  {data['score_total']}/100점 (확신 {data['confidence']})"
@@ -361,6 +361,10 @@ def render_weekly(data, video, path):
 
 def week_label(now_kst):
     return f'{now_kst.month}월 {(now_kst.day - 1) // 7 + 1}주차'
+
+
+def digest_label(now_kst, daily=False):
+    return f'{now_kst.month}월 {now_kst.day}일' if daily else week_label(now_kst)
 
 
 def ics_escape(text):
@@ -420,12 +424,12 @@ def ch6_ideas(results):
     return ideas
 
 
-def weekly_markdown(results, failed, now_kst):
-    lines = [f'# MERRY AI 다이제스트 {now_kst:%Y-%m-%d} ({week_label(now_kst)})', '',
+def weekly_markdown(results, failed, now_kst, daily=False):
+    lines = [f'# MERRY AI 다이제스트 {now_kst:%Y-%m-%d} ({digest_label(now_kst, daily)})', '',
              'AI 요약이라 사실관계는 원본 영상으로 확인 필요. 점수는 우리가 써 보기 전이라 69점이 상한.', '',
              '## 6번 채널(AI한테 시켜봤습니다) 소재 후보', '']
     ideas = ch6_ideas(results)
-    lines += [f"- {idea} — 출처: [{v['title']}]({v['url']}) ({v['channel']})" for idea, v in ideas] or ['- 이번 주는 맞는 소재 없음']
+    lines += [f"- {idea} — 출처: [{v['title']}]({v['url']}) ({v['channel']})" for idea, v in ideas] or ['- 이번에는 맞는 소재 없음']
     lines += ['', '## 영상별 요약 (점수 높은 순)', '']
     for i, r in enumerate(results, 1):
         v, d = r['video'], r['data']
@@ -443,26 +447,26 @@ def weekly_markdown(results, failed, now_kst):
     return '\n'.join(lines) + '\n'
 
 
-def build_email(results, failed, now_kst, sender, hour):
+def build_email(results, failed, now_kst, sender, hour, daily=False):
     ok = [r for r in results if r['data']]
-    subject = f'[MERRY AI 다이제스트] {week_label(now_kst)} · {len(results)}편'
+    subject = f'[MERRY AI 다이제스트] {digest_label(now_kst, daily)} · {len(results)}편'
     if ok:
         best = ok[0]['data']
         headline = f"가장 쓸 만한 영상: {best['title']} ({best['score_total']}점)"
     else:
-        headline = '이번 주는 요약에 성공한 영상이 없습니다.'
+        headline = '이번에는 요약에 성공한 영상이 없습니다.'
     ideas = ch6_ideas(results)
     cal = calendar_link(results, now_kst, hour)
     e = html.escape
-    plain = [subject, '', '이번 주 한 줄: ' + headline, '', '[6번 채널 소재 후보]']
-    plain += [f'- {idea} ({v["title"]})' for idea, v in ideas] or ['- 이번 주는 맞는 소재 없음']
+    plain = [subject, '', '한 줄 요약: ' + headline, '', '[6번 채널 소재 후보]']
+    plain += [f'- {idea} ({v["title"]})' for idea, v in ideas] or ['- 이번에는 맞는 소재 없음']
     plain.append('')
     parts = [f'<div style="font-family:sans-serif;max-width:640px;margin:auto;color:#151b22">',
              f'<h2 style="margin:0 0 6px">{e(subject)}</h2>',
-             f'<p style="font-size:17px;background:#eef7f2;padding:12px;border-radius:8px"><b>이번 주 한 줄</b><br>{e(headline)}</p>',
+             f'<p style="font-size:17px;background:#eef7f2;padding:12px;border-radius:8px"><b>한 줄 요약</b><br>{e(headline)}</p>',
              f'<p><a href="{e(cal)}">구글 캘린더에 &quot;AI 다이제스트 읽기&quot; 일정 넣기</a> (첨부한 .ics 파일로도 넣을 수 있습니다)</p>',
              '<h3>6번 채널(AI한테 시켜봤습니다) 소재 후보</h3><ul>']
-    parts += [f'<li>{e(idea)} — <a href="{e(v["url"])}">{e(v["title"])}</a></li>' for idea, v in ideas] or ['<li>이번 주는 맞는 소재 없음</li>']
+    parts += [f'<li>{e(idea)} — <a href="{e(v["url"])}">{e(v["title"])}</a></li>' for idea, v in ideas] or ['<li>이번에는 맞는 소재 없음</li>']
     parts.append('</ul>')
     images = []
     for i, r in enumerate(results, 1):
@@ -510,11 +514,28 @@ def send_email(msg, sender, password):
         smtp.send_message(msg)
 
 
-def run_weekly(client, now=None):
+def load_seen(folder):
+    try:
+        return json.loads((folder / 'seen.json').read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return []
+
+
+def run_weekly(client, now=None, daily=False):
+    """daily=True: 매일 모드. 최근 2일 영상 중 아직 안 보낸 것만 (daily/seen.json으로 중복 제외)."""
     now = now or datetime.now(timezone.utc)
     now_kst = now.astimezone(KST)
-    videos, failed = weekly_candidates(now)
+    archive = Path('daily' if daily else 'weekly')
+    archive.mkdir(exist_ok=True)
+    seen = load_seen(archive) if daily else []
+    if daily:
+        videos, failed = weekly_candidates(now, days=2, count=env_number('DAILY_COUNT', 3), skip_ids=set(seen))
+    else:
+        videos, failed = weekly_candidates(now)
     if not videos:
+        if daily:
+            print('오늘은 새 영상이 없습니다 (쇼츠·이미 보낸 영상 제외). 메일 없이 끝냅니다.', flush=True)
+            return []
         raise ValueError('최근 7일 영상(쇼츠 제외)을 찾지 못했습니다.')
     print(f'고른 영상 {len(videos)}편, 읽지 못한 채널 {len(failed)}곳', flush=True)
     (OUT / 'sources.json').write_text(json.dumps(videos, ensure_ascii=False, indent=2), encoding='utf-8')
@@ -554,12 +575,13 @@ def run_weekly(client, now=None):
             render_weekly(r['data'], r['video'], r['image'])
     (OUT / 'digest.json').write_text(json.dumps([{'video': r['video'], 'data': r['data']} for r in results],
                                                 ensure_ascii=False, indent=2), encoding='utf-8')
-    markdown = weekly_markdown(results, failed, now_kst)
+    markdown = weekly_markdown(results, failed, now_kst, daily)
     (OUT / 'weekly.md').write_text(markdown, encoding='utf-8')
-    archive = Path('weekly')
-    archive.mkdir(exist_ok=True)
     (archive / f'{now_kst:%Y-%m-%d}.md').write_text(markdown, encoding='utf-8')
     (archive / 'latest.md').write_text(markdown, encoding='utf-8')
+    if daily:  # 요약에 성공한 영상만 '보냄'으로 기록 (실패한 영상은 내일 다시 시도)
+        seen = (seen + [r['video']['video_id'] for r in ok])[-300:]
+        (archive / 'seen.json').write_text(json.dumps(seen, indent=0), encoding='utf-8')
     hour = min(23, max(0, env_number('WEEKLY_EVENT_HOUR', 22)))
     (OUT / 'ai-digest.ics').write_text(build_ics(results, now_kst, hour), encoding='utf-8', newline='')
     with ZipFile(OUT / 'merry_ai_digest.zip', 'w', ZIP_DEFLATED) as z:
@@ -568,14 +590,14 @@ def run_weekly(client, now=None):
         for name in ('sources.json', 'digest.json', 'weekly.md', 'ai-digest.ics'):
             z.write(OUT / name, name)
     if not ok:
-        raise RuntimeError('이번 주 영상 요약이 모두 실패했습니다.')
+        raise RuntimeError('영상 요약이 모두 실패했습니다.')
     sender, password = os.getenv('GMAIL_ADDRESS', '').strip(), os.getenv('GMAIL_APP_PASSWORD', '').replace(' ', '').strip()
     if not sender or not password:
-        print('메일 설정 없음: 메일은 건너뜁니다 (결과는 ZIP과 weekly/ 폴더에 있음).', flush=True)
+        print(f'메일 설정 없음: 메일은 건너뜁니다 (결과는 ZIP과 {archive}/ 폴더에 있음).', flush=True)
     else:
-        send_email(build_email(results, failed, now_kst, sender, hour), sender, password)
+        send_email(build_email(results, failed, now_kst, sender, hour, daily), sender, password)
         print('메일 보냄.', flush=True)
-    print(f'주간 다이제스트 완료: 성공 {len(ok)}편 / 전체 {len(results)}편', flush=True)
+    print(f'다이제스트 완료: 성공 {len(ok)}편 / 전체 {len(results)}편', flush=True)
     return results
 
 
@@ -583,9 +605,9 @@ def main():
     if not os.getenv('GEMINI_API_KEY'):
         raise ValueError('GEMINI_API_KEY secret이 없습니다.')
     mode = os.getenv('TARGET_MODE', 'DIRECT_URL') or 'DIRECT_URL'
-    if mode == 'WEEKLY_YOUTUBE':
+    if mode in ('WEEKLY_YOUTUBE', 'DAILY_YOUTUBE'):
         client = genai.Client(api_key=os.environ['GEMINI_API_KEY'], http_options=types.HttpOptions(timeout=300000))
-        run_weekly(client)
+        run_weekly(client, daily=(mode == 'DAILY_YOUTUBE'))
         return
     source, sources = get_source(mode, os.getenv('YOUTUBE_URL', ''))
     (OUT / 'sources.json').write_text(json.dumps(sources, ensure_ascii=False, indent=2), encoding='utf-8')

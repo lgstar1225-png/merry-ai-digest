@@ -28,3 +28,8 @@ Independent from `ai-secretary` and `써보니`.
   - `GMAIL_APP_PASSWORD`: 구글 계정의 "앱 비밀번호" 16자리 (2단계 인증 필요)
 - 비밀이 없으면 메일만 건너뛰고 나머지는 그대로 동작합니다.
 - 조절(선택): `WEEKLY_COUNT`(편수, 기본 5), `WEEKLY_PER_CHANNEL`(채널당, 기본 1), `WEEKLY_EVENT_HOUR`(일정 시각, 기본 22시), `WEEKLY_PAUSE`(영상 사이 쉬는 초, 기본 45). 사용량 한도(429)면 30·60·90초 기다리고, 그래도 실패한 영상은 2분 뒤 한 번 더 시도.
+
+## 매일 메일 (DAILY_YOUTUBE) — 11/11부터 자동 실행 기본값, 매일 오전 7시
+- 최근 2일 영상 중 쇼츠와 이미 보낸 영상(`daily/seen.json`)을 빼고, 채널당 1편씩 조회수 높은 순으로 최대 3편(`DAILY_COUNT`).
+- 새 영상이 없으면 메일 없이 끝납니다. 결과는 `daily/날짜.md`, `daily/latest.md`.
+- 주간 모드(WEEKLY_YOUTUBE)는 손으로 실행할 때만 씁니다.
