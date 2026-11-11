@@ -1,13 +1,16 @@
 name: MERRY AI DIGEST
 on:
+  schedule:
+    # 매주 월요일 한국 시간 오전 7시 (UTC 일요일 22:00)
+    - cron: '0 22 * * 0'
   workflow_dispatch:
     inputs:
       target_mode:
         description: Source mode
         type: choice
         required: true
-        options: [DIRECT_URL, LATEST_AI_YOUTUBE, GITHUB]
-        default: DIRECT_URL
+        options: [WEEKLY_YOUTUBE, DIRECT_URL, LATEST_AI_YOUTUBE, GITHUB]
+        default: WEEKLY_YOUTUBE
       youtube_url:
         description: YouTube URL for DIRECT_URL
         type: string
@@ -17,7 +20,11 @@ permissions:
 jobs:
   digest:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 60
+    permissions:
+      contents: write   # 주간 요약을 weekly/ 폴더에 보관하기 위해서만 사용
+    env:
+      MODE: ${{ inputs.target_mode || 'WEEKLY_YOUTUBE' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,10 +40,24 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL }}
-          TARGET_MODE: ${{ inputs.target_mode }}
+          TARGET_MODE: ${{ env.MODE }}
           YOUTUBE_URL: ${{ inputs.youtube_url }}
           GITHUB_TOKEN: ${{ github.token }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python digest_pipeline.py
+      - name: Save weekly summary to repository
+        if: success() && env.MODE == 'WEEKLY_YOUTUBE'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add weekly/
+          if git diff --cached --quiet; then
+            echo "보관할 변경 없음"
+          else
+            git commit -m "weekly digest $(date -u +%F)"
+            git push
+          fi
       - name: Upload output even on failure
         if: always()
         uses: actions/upload-artifact@v4
@@ -45,4 +66,3 @@ jobs:
           path: output_digest/
           if-no-files-found: warn
           retention-days: 7
-
