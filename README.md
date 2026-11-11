@@ -27,4 +27,4 @@ Independent from `ai-secretary` and `써보니`.
   - `GMAIL_ADDRESS`: 보내고 받을 지메일 주소
   - `GMAIL_APP_PASSWORD`: 구글 계정의 "앱 비밀번호" 16자리 (2단계 인증 필요)
 - 비밀이 없으면 메일만 건너뛰고 나머지는 그대로 동작합니다.
-- 조절(선택): `WEEKLY_COUNT`(편수, 기본 5), `WEEKLY_PER_CHANNEL`(채널당, 기본 1), `WEEKLY_EVENT_HOUR`(일정 시각, 기본 22시), `WEEKLY_PAUSE`(영상 사이 쉬는 초, 기본 20).
+- 조절(선택): `WEEKLY_COUNT`(편수, 기본 5), `WEEKLY_PER_CHANNEL`(채널당, 기본 1), `WEEKLY_EVENT_HOUR`(일정 시각, 기본 22시), `WEEKLY_PAUSE`(영상 사이 쉬는 초, 기본 45). 사용량 한도(429)면 30·60·90초 기다리고, 그래도 실패한 영상은 2분 뒤 한 번 더 시도.

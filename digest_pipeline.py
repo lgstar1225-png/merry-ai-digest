@@ -194,7 +194,7 @@ def render(data, sources, mode):
 def clean_head(head):
     return re.sub(r'^\s*\d+[.)]\s+', '', head)
 
-def generate_with_retry(client, contents, schema, expected_cards, media_resolution=None):
+def generate_with_retry(client, contents, schema, expected_cards, media_resolution=None, delays=(5, 15, 45)):
     """일시적인 오류는 다시 시도하고, 응답 형식도 확인한다."""
     extra = {'media_resolution': media_resolution} if media_resolution else {}
     config = types.GenerateContentConfig(response_mime_type='application/json', response_json_schema=schema, **extra)
@@ -219,7 +219,7 @@ def generate_with_retry(client, contents, schema, expected_cards, media_resoluti
                             raise
                     print(f'Gemini 요청 최종 실패: {type(exc).__name__}, 오류 코드 {code if code is not None else "없음"}', flush=True)
                     raise
-                delay = (5, 15, 45)[attempt]
+                delay = delays[attempt]
                 print(f'Gemini {attempt + 1}번째 시도 실패: {delay}초 기다린 뒤 {attempt + 2}번째 시도합니다.', flush=True)
                 time.sleep(delay)
 
@@ -242,6 +242,8 @@ FEED_NS = {'a': 'http://www.w3.org/2005/Atom', 'yt': 'http://www.youtube.com/xml
            'media': 'http://search.yahoo.com/mrss/'}
 SCORE_MAX = {'score_fit': 25, 'score_change': 30, 'score_evidence': 20, 'score_easy': 15, 'score_keep': 10}
 SCORE_CAP = 69  # 100점표 규칙: 우리가 써 보기 전에는 70점 미만
+WEEKLY_RETRY_DELAYS = (30, 60, 90)  # 429(분당 사용량 한도)는 1분 넘게 기다려야 풀린다
+WEEKLY_SECOND_PASS_WAIT = 120
 WEEKLY_SCHEMA = copy.deepcopy(SCHEMA)
 WEEKLY_SCHEMA['properties']['cards']['minItems'] = 1
 WEEKLY_SCHEMA['properties']['cards']['maxItems'] = 1
@@ -320,8 +322,10 @@ def weekly_prompt(video):
         '확인 안 된 효과는 점수에 넣지 말고, 하나마나한 이야기면 낮게 주세요.\n'
         'reason은 점수 이유 한 줄(60자 이내), try_next는 해볼 만한 가장 작은 시험 한 가지(60자 이내)입니다.\n'
         'ch6_idea는 「AI한테 시켜봤습니다」 쇼츠 채널(작은 가게 사장이 AI에게 실제로 일을 맡겨 보는 기록)의 소재 한 줄(80자 이내)입니다. '
-        '"사장님이 이걸 AI한테 시켜 보면?" 형태로 쓰고, 맞는 소재가 없으면 "해당 없음"이라고 쓰세요.\n'
-        '가격·수치·후기를 지어내지 말고, 영상에서 확인하지 못한 사실은 만들지 마세요.'
+        '"사장님이 이걸 AI한테 시켜 보면?" 형태로 쓰고, 영상에 나온 AI 기능으로 가게 일(주문 정리, 상품 소개 글, 손님 답장, 사진, 재고, 블로그·쇼츠)을 '
+        '실제로 맡겨 볼 수 있을 때만 쓰세요. 억지로 연결하지 말고, 연구·이론·업계 소식처럼 직접 맡길 일이 없으면 "해당 없음"이라고 쓰세요.\n'
+        '가격·수치·후기를 지어내지 말고, 영상에서 확인하지 못한 사실은 만들지 마세요. '
+        '금액은 영상에 나온 단위 그대로 쓰고, 원화 등 다른 통화로 바꾸거나 직접 계산하지 마세요.'
     )
 
 
@@ -514,23 +518,34 @@ def run_weekly(client, now=None):
         raise ValueError('최근 7일 영상(쇼츠 제외)을 찾지 못했습니다.')
     print(f'고른 영상 {len(videos)}편, 읽지 못한 채널 {len(failed)}곳', flush=True)
     (OUT / 'sources.json').write_text(json.dumps(videos, ensure_ascii=False, indent=2), encoding='utf-8')
-    pause = env_number('WEEKLY_PAUSE', 20)
-    results = []
-    for i, video in enumerate(videos, 1):
-        if i > 1 and pause > 0:
-            time.sleep(pause)  # 분당 사용량 한도를 피하려고 영상 사이에 쉰다
+    pause = env_number('WEEKLY_PAUSE', 45)
+
+    def summarize(i, video):
         print(f'[{i}/{len(videos)}] {video["channel"]} 요약 시작', flush=True)
         try:
             contents = [weekly_prompt(video), types.Part.from_uri(file_uri=video['url'], mime_type='video/mp4')]
             data = generate_with_retry(client, contents, WEEKLY_SCHEMA, 1,
-                                       media_resolution=types.MediaResolution.MEDIA_RESOLUTION_LOW)
+                                       media_resolution=types.MediaResolution.MEDIA_RESOLUTION_LOW,
+                                       delays=WEEKLY_RETRY_DELAYS)
             for card in data['cards']:
                 card['head'] = clean_head(card['head'])
             score_total(data)
+            return data
         except Exception as exc:  # 한 편이 실패해도 나머지는 계속
             print(f'[{i}/{len(videos)}] 요약 실패: {type(exc).__name__}', flush=True)
-            data = None
-        results.append({'video': video, 'data': data})
+            return None
+
+    results = []
+    for i, video in enumerate(videos, 1):
+        if i > 1 and pause > 0:
+            time.sleep(pause)  # 분당 사용량 한도를 피하려고 영상 사이에 쉰다
+        results.append({'video': video, 'data': summarize(i, video)})
+    # 실패한 영상은 한도가 풀리도록 2분 쉰 뒤 한 번 더 시도한다
+    for i, r in enumerate(results, 1):
+        if r['data'] is None:
+            print(f'[{i}/{len(videos)}] 실패한 영상 다시 시도: {WEEKLY_SECOND_PASS_WAIT}초 쉼', flush=True)
+            time.sleep(WEEKLY_SECOND_PASS_WAIT)
+            r['data'] = summarize(i, r['video'])
     ok = sorted((r for r in results if r['data']), key=lambda r: r['data']['score_total'], reverse=True)
     results = ok + [r for r in results if not r['data']]
     for i, r in enumerate(results, 1):
