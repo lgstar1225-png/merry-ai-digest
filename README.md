@@ -33,3 +33,4 @@ Independent from `ai-secretary` and `써보니`.
 - 최근 2일 영상 중 쇼츠와 이미 보낸 영상(`daily/seen.json`)을 빼고, 채널당 1편씩 조회수 높은 순으로 최대 3편(`DAILY_COUNT`).
 - 새 영상이 없으면 메일 없이 끝납니다. 결과는 `daily/날짜.md`, `daily/latest.md`.
 - 주간 모드(WEEKLY_YOUTUBE)는 손으로 실행할 때만 씁니다.
+- 구글 캘린더 구독 주소(매일 밤 10시 일정, 최근 60일): https://raw.githubusercontent.com/lgstar1225-png/merry-ai-digest/main/daily/calendar.ics — 구글 캘린더 웹 → 다른 캘린더 + → URL로 추가.

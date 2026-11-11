@@ -409,6 +409,43 @@ def build_ics(results, now_kst, hour):
     return '\r\n'.join(ics_fold(line) for line in lines) + '\r\n'
 
 
+def update_calendar_feed(archive, results, now_kst, hour):
+    """매일 모드: 구글 캘린더가 '구독'할 수 있는 calendar.ics를 갱신한다 (최근 60일 일정)."""
+    ok = [r for r in results if r['data']]
+    if not ok:
+        return
+    path = archive / 'events.json'
+    try:
+        events = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        events = []
+    day = now_kst.strftime('%Y%m%d')
+    lines = []
+    for i, r in enumerate(ok, 1):
+        d, v = r['data'], r['video']
+        lines += [f"{i}. {d['title']} ({d['score_total']}점)", d['cards'][0]['desc'][:180],
+                  f"해볼 만한 것: {d.get('try_next', '')}", v['url'], '']
+    ideas = ch6_ideas(ok)
+    if ideas:
+        lines += ['6번 채널 소재: ' + ' / '.join(idea for idea, _ in ideas), '']
+    lines.append('AI 요약이라 사실관계는 원본 영상으로 확인 필요')
+    event = {'day': day, 'summary': f"AI 뉴스 {len(ok)}편: {ok[0]['data']['title']}", 'description': '\n'.join(lines)}
+    events = [e for e in events if e.get('day') != day] + [event]
+    events = sorted(events, key=lambda e: e['day'])[-60:]
+    path.write_text(json.dumps(events, ensure_ascii=False, indent=1), encoding='utf-8')
+    stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    out = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MERRY//AI DIGEST DAILY//KO', 'CALSCALE:GREGORIAN',
+           'METHOD:PUBLISH', 'X-WR-CALNAME:MERRY AI 뉴스', 'X-WR-TIMEZONE:Asia/Seoul',
+           'BEGIN:VTIMEZONE', 'TZID:Asia/Seoul', 'BEGIN:STANDARD', 'DTSTART:19700101T000000',
+           'TZOFFSETFROM:+0900', 'TZOFFSETTO:+0900', 'TZNAME:KST', 'END:STANDARD', 'END:VTIMEZONE']
+    for e in events:
+        out += ['BEGIN:VEVENT', f"UID:merry-ai-digest-daily-{e['day']}@merry-ai-digest", f'DTSTAMP:{stamp}',
+                f"DTSTART;TZID=Asia/Seoul:{e['day']}T{hour:02d}0000", f"DTEND;TZID=Asia/Seoul:{e['day']}T{hour:02d}1500",
+                'SUMMARY:' + ics_escape(e['summary']), 'DESCRIPTION:' + ics_escape(e['description']), 'END:VEVENT']
+    out.append('END:VCALENDAR')
+    (archive / 'calendar.ics').write_text('\r\n'.join(ics_fold(x) for x in out) + '\r\n', encoding='utf-8', newline='')
+
+
 def calendar_link(results, now_kst, hour):
     start, end = event_times(now_kst, hour)
     return ('https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + quote('AI 다이제스트 읽기')
@@ -584,6 +621,8 @@ def run_weekly(client, now=None, daily=False):
         (archive / 'seen.json').write_text(json.dumps(seen, indent=0), encoding='utf-8')
     hour = min(23, max(0, env_number('WEEKLY_EVENT_HOUR', 22)))
     (OUT / 'ai-digest.ics').write_text(build_ics(results, now_kst, hour), encoding='utf-8', newline='')
+    if daily:
+        update_calendar_feed(archive, results, now_kst, hour)
     with ZipFile(OUT / 'merry_ai_digest.zip', 'w', ZIP_DEFLATED) as z:
         for p in sorted(OUT.glob('weekly_*.png')):
             z.write(p, p.name)
