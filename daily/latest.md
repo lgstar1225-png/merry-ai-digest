@@ -1,55 +1,64 @@
-# MERRY AI 다이제스트 2026-11-12 (11월 12일)
+# MERRY AI 다이제스트 2026-11-13 (11월 13일)
 
 AI 요약이라 사실관계는 원본 영상으로 확인 필요. 점수는 우리가 써 보기 전이라 69점이 상한.
 
 ## 6번 채널(AI한테 시켜봤습니다) 소재 후보
 
-- 사장님이 이걸 AI한테 시켜 보면? 오픈AI의 새로운 이미지 모델로 동대문 의류 부자재 상품 사진을 더 예쁘고 빠르게 만들어 보게 시켰습니다. — 출처: [Gemini Carbon, NVIDIA CEO AFFAIR, Fable 5.2, Meta Muse Ember, GPT Image 2.6, Minimax H3: AI NEWS](https://www.youtube.com/watch?v=FCmLuTENOp0) (Matthew Berman)
+- 이번에는 맞는 소재 없음
 
 ## 영상별 요약 (점수 높은 순)
 
-### 1. [Gemini Carbon, NVIDIA CEO AFFAIR, Fable 5.2, Meta Muse Ember, GPT Image 2.6, Minimax H3: AI NEWS](https://www.youtube.com/watch?v=FCmLuTENOp0)
-- Matthew Berman · 조회수 99,951회 · 게시 2026-11-11
-- 점수 56/100 (확신 낮음) — fit 15 / change 18 / evidence 10 / easy 8 / keep 5
-- 핵심: 다양한 AI 모델 출시와 업데이트 소식
-- 구글의 제미나이 4 카본, 앤스로픽의 클로드 페이블 5.2, 메타의 뮤즈 앰버, 오픈AI의 GPT 이미지 2.6 등 다양한 AI 모델이 발표되었습니다. 각 모델은 성능과 가격 면에서 차이를 보이며, 동대문 의류 부자재 사업의 상품 소개 글 작성이나 쇼츠 제작 등에 활용할 수 있는 가능성을 보여줍니다. 다만 직접 사용해 본 결과가 아직 없으며, 각 모델의 실제 효율성과 비용을 꼼꼼히 확인해야 하는 한계가 있습니다.
-- 이유: 다양한 AI 소식이 있으나 직접 검증되지 않아 확신이 낮음
-- 해볼 만한 것: 가장 가벼운 AI 모델의 무료 체험판을 한 번 써보기
+### 1. [DeepMind’s AI Just Did The Impossible](https://www.youtube.com/watch?v=gPNiuyYirfw)
+- Two Minute Papers · 조회수 148,714회 · 게시 2026-11-12
+- 점수 40/100 (확신 보통) — fit 5 / change 10 / evidence 15 / easy 5 / keep 5
+- 핵심: AI가 650만 개 수학 증명으로 보안 코드 검증 완료
+- 딥마인드 연구팀의 알파프루프 코드가 4주 동안 650만 줄의 수학적 증명을 생성해 메신저 암호화 코드(libsignal)의 안전성을 검증했습니다. 다만 전체 앱이나 그룹챗이 아닌 일부 암호화 프로토콜만 다루며 우리 부자재 사업에 직접 쓰기는 어렵습니다.
+- 이유: 학술 연구용 보안 검증이라 도소매 사업에 적용하기 어렵습니다.
+- 해볼 만한 것: 보안 관련 최신 AI 도구 뉴스 살펴보기
 
-### 2. [Fable 5.2: The Self-Improvement Loop Keeps Loopin’ … (plus Gemini Carbon)](https://www.youtube.com/watch?v=583ThJIqQ7k)
-- AI Explained · 조회수 163,003회 · 게시 2026-11-10
-- 요약 실패 (다음 주에 다시 시도하거나 직접 확인)
+### 2. [Jensen Huang just pulled out of Nvidia...](https://www.youtube.com/watch?v=SOwUWPtXQ9I)
+- Fireship · 조회수 91,952회 · 게시 2026-11-12
+- 점수 24/100 (확신 낮음) — fit 5 / change 5 / evidence 10 / easy 2 / keep 2
+- 핵심: 엔비디아 CEO 스캔들과 우회 수출 논란
+- 싱가포르와 말레이시아의 페이퍼컴퍼니 메가스피드가 2년간 48억 달러 이상의 엔비디아 칩을 구매하고 알리바바 등에 컴퓨팅 파워를 임대해 미국의 대중국 수출 규제를 우회했다는 의혹이 제기되었습니다. CEO 젠슨 황은 관련 여성과의 관계 의혹 및 이사회 사임으로 주가 하락을 겪었습니다. 동대문 부자재 1인 사업장의 마케팅이나 AI 자동화에 직접 쓸 수 있는 기능은 없으며 글로벌 IT·증권 소식일 뿐입니다.
+- 이유: 대기업 경영자 스캔들이라 1인 가게 실무와 무관함
+- 해볼 만한 것: 해당 없음
 
-### 3. [He Built an AI System That Runs His Entire Business](https://www.youtube.com/watch?v=pvl3z_GyU2Y)
-- Matt Wolfe · 조회수 51,760회 · 게시 2026-11-11
+### 3. [Fable 5.2: The Self-Improvement Loop Keeps Loopin’ … (plus Gemini Carbon)](https://www.youtube.com/watch?v=583ThJIqQ7k)
+- AI Explained · 조회수 178,535회 · 게시 2026-11-10
 - 요약 실패 (다음 주에 다시 시도하거나 직접 확인)
 
 ## 해외 AI 뉴스 (기사 제목·요약문 기준)
 
-### [챗GPT, 브랜드 대신 대화하는 비즈니스 에이전트 도입](https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub) — The Verge AI
-- 점수 50/100 (확신 보통)
-- 챗GPT는 브랜드 쇼핑 비교 등을 도와주는 검증된 비즈니스 에이전트와 대화할 수 있게 합니다. 이 기능은 미국 내 자격이 되는 이커머스 기업에 먼저 출시됩니다.
-- 우리 일에는: 향후 우리 쇼핑몰 운영에 고객 응대용 AI 비서 도입을 고민해볼 수 있음.
-
-### [구글, 가족과 협업 앱 만드는 실험용 AI 공개](https://www.theverge.com/tech/1031526/google-tabletop-ai-experiment-waitlist-availability) — The Verge AI
-- 점수 40/100 (확신 낮음)
-- 구글은 가족과 친구들이 소통을 조정할 수 있도록 맞춤형 협업 허브를 만드는 테이블톱이라는 실험용 AI 도구를 만들었습니다. 업무 관리 앱과 시각적으로 유사하면서 AI 기능이 내장되어 있습니다.
+### [구글 검색의 업그레이드](https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/) — TechCrunch AI
+- 점수 25/100 (확신 낮음)
+- 구글의 새로운 AI 모드는 더 복잡한 질문을 이해하고 관련 링크를 보여주며 풍부한 시각적 답변을 제공합니다. 이 기능은 제미나이 4 하이드로겐 모델을 바탕으로 작동합니다.
 - 우리 일에는: 직접 관련 적음
 
-### [유나이티드항공, 내 표 예매하는 AI 비서 거부](https://www.theverge.com/ai-artificial-intelligence/1031623/united-unauthorized-ai-agents) — The Verge AI
-- 점수 35/100 (확신 낮음)
-- 유나이티드항공은 개인 AI 비서가 항공권을 예매하는 것을 허용하지 않기로 했습니다. 프라이버시와 규제 문제 때문입니다.
+### [브랜드와 인플루언서를 연결하는 AI 에이전트](https://techcrunch.com/2026/11/12/nectar-launches-an-ai-agent-to-automate-creator-discovery-and-outreach-for-brands/) — TechCrunch AI
+- 점수 25/100 (확신 낮음)
+- 넥타의 새로운 AI 에이전트는 브랜드의 인플루언서 마케팅을 자동화합니다. 크리에이터를 찾고 연락하며 캠페인 결과를 추적하는 일을 돕습니다.
+- 우리 일에는: 직접 관련 적음
+
+### [일상 사진을 전문가처럼 바꿔주는 AI](https://techcrunch.com/2026/11/12/phota-labs-uses-ai-to-turn-everyday-photos-into-professional-looking-shots/) — TechCrunch AI
+- 점수 25/100 (확신 낮음)
+- 포타 랩스는 AI 기술을 이용해 평범한 사진을 전문가처럼 보이게 만들어 줍니다. 누구나 일상의 순간을 더 좋은 사진으로 쉽게 바꾸도록 편집 과정을 자동화합니다.
 - 우리 일에는: 직접 관련 적음
 
 ## 깃허브 오늘 인기 AI 도구
 
-### [CopilotKit/OpenBot | 컴퓨터를 다루는 AI 동료](https://github.com/CopilotKit/OpenBot) — GitHub 오늘 인기
-- 점수 37/100 (확신 낮음)
-- 웹브라우저와 파일, 도구를 스스로 다루면서 일하는 오픈소스 인공지능 동료입니다. 모든 행동을 스스로 결정하고 기록합니다.
-- 우리 일에는: 블로그나 쇼츠 자동화 작업에 쓸 곳 적음
+### [free-claude-code - 무료 인공지능 도구 모음](https://github.com/Alishahryar1/free-claude-code) — GitHub 오늘 인기
+- 점수 51/100 (확신 보통)
+- 여러 종류의 인공지능 코딩 도구를 무료로 쓸 수 있게 돕는 프로그램입니다. 터미널이나 앱에서 여러 인공지능을 함께 쓸 수 있습니다.
+- 우리 일에는: 블로그나 홈페이지 만들 때 인공지능을 공짜로 쓸 수 있습니다.
 
-### [QwenLM/qwen-code | 터미널 속 AI 코딩 도우미](https://github.com/QwenLM/qwen-code) — GitHub 오늘 인기
-- 점수 25/100 (확신 낮음)
-- 내 컴퓨터 터미널에서 직접 실행되는 오픈소스 인공지능 코딩 도우미 프로그램입니다. 개발 작업을 도와주는 기능을 제공합니다.
-- 우리 일에는: 홈페이지나 AI 자동화 설정할 때 코딩 보조로 쓸 곳 적음
+### [TensorFold - 인공지능 모델 구동 엔진](https://github.com/ashhart/TensorFold) — GitHub 오늘 인기
+- 점수 30/100 (확신 낮음)
+- 컴퓨터에서 인공지능 모델을 빠르게 실행하는 프로그램입니다. 그래픽카드 성능을 활용해 인공지능을 돌립니다.
+- 우리 일에는: 직접 쓸 곳 적음
+
+### [llama.cpp - 가벼운 인공지능 실행기](https://github.com/ggml-org/llama.cpp) — GitHub 오늘 인기
+- 점수 30/100 (확신 낮음)
+- 컴퓨터에서 인공지능을 가볍고 빠르게 실행할 수 있게 만들어 주는 도구입니다. 복잡한 설정 없이 인공지능을 돌립니다.
+- 우리 일에는: 직접 쓸 곳 적음
 
