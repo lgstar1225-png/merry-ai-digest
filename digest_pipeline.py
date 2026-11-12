@@ -11,7 +11,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
-from email.utils import make_msgid
+from email.utils import make_msgid, parsedate_to_datetime
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 from zipfile import ZipFile, ZIP_DEFLATED
@@ -227,7 +227,7 @@ def generate_with_retry(client, contents, schema, expected_cards, media_resoluti
         response = request()
         try:
             data = json.loads(response.text)
-            if not isinstance(data, dict) or not isinstance(data.get('cards'), list) or len(data['cards']) != expected_cards:
+            if not isinstance(data, dict) or not isinstance(data.get('cards'), list) or (expected_cards is not None and len(data['cards']) != expected_cards):
                 raise ValueError(f'카드가 {expected_cards}개가 아닙니다.')
             return data
         except (ValueError, TypeError) as exc:
@@ -409,10 +409,12 @@ def build_ics(results, now_kst, hour):
     return '\r\n'.join(ics_fold(line) for line in lines) + '\r\n'
 
 
-def update_calendar_feed(archive, results, now_kst, hour):
+def update_calendar_feed(archive, results, now_kst, hour, extras=None):
     """매일 모드: 구글 캘린더가 '구독'할 수 있는 calendar.ics를 갱신한다 (최근 60일 일정)."""
+    extras = extras or {}
     ok = [r for r in results if r['data']]
-    if not ok:
+    news, tools = extras.get('news', []), extras.get('tools', [])
+    if not ok and not news and not tools:
         return
     path = archive / 'events.json'
     try:
@@ -420,16 +422,26 @@ def update_calendar_feed(archive, results, now_kst, hour):
     except (OSError, ValueError):
         events = []
     day = now_kst.strftime('%Y%m%d')
-    lines = []
+    lines = ['[유튜브]'] if ok else []
     for i, r in enumerate(ok, 1):
         d, v = r['data'], r['video']
         lines += [f"{i}. {d['title']} ({d['score_total']}점)", d['cards'][0]['desc'][:180],
                   f"해볼 만한 것: {d.get('try_next', '')}", v['url'], '']
+    for label, group in (('[해외 뉴스]', news), ('[깃허브 인기 도구]', tools)):
+        if group:
+            lines.append(label)
+        for c in group:
+            lines += [f"- {c['title_ko']} ({c['score_total']}점)", c['summary'][:180], f"우리 일에는: {c['why_us']}", c['url'], '']
     ideas = ch6_ideas(ok)
     if ideas:
         lines += ['6번 채널 소재: ' + ' / '.join(idea for idea, _ in ideas), '']
-    lines.append('AI 요약이라 사실관계는 원본 영상으로 확인 필요')
-    event = {'day': day, 'summary': f"AI 뉴스 {len(ok)}편: {ok[0]['data']['title']}", 'description': '\n'.join(lines)}
+    lines.append('AI 요약이라 사실관계는 원본 영상·기사로 확인 필요')
+    top = ok[0]['data']['title'] if ok else (news or tools)[0]['title_ko']
+    event = {'day': day, 'summary': f"AI 뉴스(영상 {len(ok)}·기사 {len(news)}·도구 {len(tools)}): {top}",
+             'description': '\n'.join(lines)}
+    earlier = next((e for e in events if e.get('day') == day), None)
+    if earlier:  # 같은 날 두 번째 실행이면 앞선 내용을 지우지 않고 아래에 붙인다
+        event['description'] += '\n\n[같은 날 앞선 실행]\n' + earlier['description']
     events = [e for e in events if e.get('day') != day] + [event]
     events = sorted(events, key=lambda e: e['day'])[-60:]
     path.write_text(json.dumps(events, ensure_ascii=False, indent=1), encoding='utf-8')
@@ -461,7 +473,7 @@ def ch6_ideas(results):
     return ideas
 
 
-def weekly_markdown(results, failed, now_kst, daily=False):
+def weekly_markdown(results, failed, now_kst, daily=False, extras=None):
     lines = [f'# MERRY AI 다이제스트 {now_kst:%Y-%m-%d} ({digest_label(now_kst, daily)})', '',
              'AI 요약이라 사실관계는 원본 영상으로 확인 필요. 점수는 우리가 써 보기 전이라 69점이 상한.', '',
              '## 6번 채널(AI한테 시켜봤습니다) 소재 후보', '']
@@ -480,13 +492,18 @@ def weekly_markdown(results, failed, now_kst, daily=False):
                   f"- 핵심: {d['cards'][0]['head']}", f"- {d['cards'][0]['desc']}",
                   f"- 이유: {d.get('reason', '')}", f"- 해볼 만한 것: {d.get('try_next', '')}", '']
     if failed:
-        lines.append('읽지 못한 채널: ' + ', '.join(failed))
+        lines += ['읽지 못한 채널: ' + ', '.join(failed), '']
+    if extras:
+        lines += extra_sections_md(extras)
     return '\n'.join(lines) + '\n'
 
 
-def build_email(results, failed, now_kst, sender, hour, daily=False):
+def build_email(results, failed, now_kst, sender, hour, daily=False, extras=None):
+    extras = extras or {}
     ok = [r for r in results if r['data']]
     subject = f'[MERRY AI 다이제스트] {digest_label(now_kst, daily)} · {len(results)}편'
+    if extras.get('news') or extras.get('tools'):
+        subject += f" · 기사 {len(extras.get('news', []))} · 도구 {len(extras.get('tools', []))}"
     if ok:
         best = ok[0]['data']
         headline = f"가장 쓸 만한 영상: {best['title']} ({best['score_total']}점)"
@@ -527,6 +544,16 @@ def build_email(results, failed, now_kst, sender, hour, daily=False):
     if failed:
         parts.append(f'<p style="color:#5b6570">읽지 못한 채널: {e(", ".join(failed))}</p>')
         plain.append('읽지 못한 채널: ' + ', '.join(failed))
+    for key, head in (('news', '해외 AI 뉴스 (기사 제목·요약문 기준)'), ('tools', '깃허브 오늘 인기 AI 도구')):
+        group = extras.get(key, [])
+        if not group:
+            continue
+        parts.append(f'<hr><h3>{e(head)}</h3>')
+        plain += ['', f'[{head}]']
+        for c in group:
+            parts.append(f'<p><b><a href="{e(c["url"])}">{e(c["title_ko"])}</a></b> · {c["score_total"]}/100점 '
+                         f'(확신 {e(c["confidence"])}) · {e(c["source"])}<br>{e(c["summary"])}<br>우리 일에는: {e(c["why_us"])}</p>')
+            plain += [f"- {c['title_ko']} ({c['score_total']}점) {c['url']}", f"  {c['summary']}", f"  우리 일에는: {c['why_us']}"]
     note = 'AI 요약이라 사실관계는 원본 영상으로 확인 필요합니다. 점수는 우리가 써 보기 전이라 69점이 상한입니다.'
     parts.append(f'<hr><p style="color:#737e89;font-size:13px">{note}</p></div>')
     plain += ['', '구글 캘린더에 일정 넣기: ' + cal, note]
@@ -551,6 +578,157 @@ def send_email(msg, sender, password):
         smtp.send_message(msg)
 
 
+# ---------- 매일 모드 추가: 해외 AI 뉴스 기사 + 깃허브 오늘 인기 AI 도구 ----------
+NEWS_FEEDS = {
+    'TechCrunch AI': 'https://techcrunch.com/category/artificial-intelligence/feed/',
+    'The Verge AI': 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml',
+    'MIT Technology Review AI': 'https://www.technologyreview.com/topic/artificial-intelligence/feed',
+}
+EXTRA_SCHEMA = {
+    'type': 'object',
+    'properties': {'cards': {'type': 'array', 'maxItems': 3, 'items': {
+        'type': 'object',
+        'properties': {
+            'index': {'type': 'integer'}, 'title_ko': {'type': 'string'}, 'summary': {'type': 'string'},
+            'why_us': {'type': 'string'}, 'confidence': {'type': 'string', 'enum': ['높음', '보통', '낮음']},
+            **{k: {'type': 'integer', 'minimum': 0, 'maximum': v} for k, v in SCORE_MAX.items()}},
+        'required': ['index', 'title_ko', 'summary', 'why_us', 'confidence'] + list(SCORE_MAX)}}},
+    'required': ['cards'],
+}
+SCORE_RULE = ('점수: score_fit 우리 일과 맞나(0~25), score_change 실제로 얼마나 바뀌나(0~30), score_evidence 작동이 확인됐나(0~20), '
+              'score_easy 시작이 쉬운가(0~15), score_keep 계속 쓰기 좋은가(0~10). 우리는 아직 써 보지 않았으므로 합계 70점 미만, '
+              'confidence는 보통 또는 낮음. 하나마나한 이야기면 낮게.\n')
+US = '우리 일 = 동대문 의류 부자재 도소매 1인 사업자의 블로그·쇼츠·롱폼 유튜브·홈페이지·AI 자동화.\n'
+
+
+def strip_html(text):
+    return BeautifulSoup(text or '', 'html.parser').get_text(' ', strip=True)
+
+
+def news_candidates(now, days=2, skip=()):
+    """해외 AI 기사 RSS(무료)에서 최근 기사를 모은다. 실패한 곳은 건너뛴다."""
+    since = now - timedelta(days=days)
+    atom = '{http://www.w3.org/2005/Atom}'
+    items, failed = [], []
+    for name, url in NEWS_FEEDS.items():
+        try:
+            resp = requests.get(url, headers={'User-Agent': 'MERRY-AI-DIGEST'}, timeout=TIMEOUT)
+            resp.raise_for_status()
+            root = ET.fromstring(resp.content)
+        except (requests.RequestException, ET.ParseError) as exc:
+            print(f'뉴스 RSS 조회 실패, 건너뜀: {name} ({type(exc).__name__})', flush=True)
+            failed.append(name)
+            continue
+        entries = []
+        for it in root.iter('item'):
+            entries.append((it.findtext('title'), it.findtext('link'), it.findtext('pubDate'), it.findtext('description')))
+        for it in root.iter(atom + 'entry'):
+            link = next((l.get('href') for l in it.findall(atom + 'link') if l.get('rel', 'alternate') == 'alternate'), None)
+            entries.append((it.findtext(atom + 'title'), link, it.findtext(atom + 'published') or it.findtext(atom + 'updated'),
+                            it.findtext(atom + 'summary') or it.findtext(atom + 'content')))
+        for title, link, pub, desc in entries:
+            if not title or not link or link in skip:
+                continue
+            try:
+                when = (parsedate_to_datetime(pub) if pub and not pub[:4].isdigit()
+                        else datetime.fromisoformat((pub or '').replace('Z', '+00:00')))
+            except (TypeError, ValueError):
+                continue
+            if when.tzinfo is None:
+                when = when.replace(tzinfo=timezone.utc)
+            if when < since:
+                continue
+            items.append({'source': name, 'title': strip_html(title), 'url': link.strip(),
+                          'summary': strip_html(desc)[:400], 'published': when.isoformat()})
+    items.sort(key=lambda x: x['published'], reverse=True)
+    return items[:30], failed
+
+
+def github_daily(skip=()):
+    resp = requests.get('https://github.com/trending?since=daily', headers={'User-Agent': 'MERRY-AI-DIGEST'}, timeout=TIMEOUT)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    items = []
+    for article in soup.select('article.Box-row'):
+        link = article.select_one('h2 a')
+        if not link or not link.get('href'):
+            continue
+        name = link['href'].strip('/')
+        if name.count('/') != 1 or 'gh:' + name in skip:
+            continue
+        desc = article.select_one('p')
+        items.append({'source': 'GitHub 오늘 인기', 'title': name, 'url': 'https://github.com/' + name,
+                      'summary': desc.get_text(' ', strip=True) if desc else ''})
+    return items
+
+
+def pick_extras(client, kind, items):
+    """목록에서 Gemini가 최대 3개를 고르고 쉬운 한국어 요약 + 100점. 번호가 틀린 항목은 버린다."""
+    if not items:
+        return []
+    listing = '\n'.join(f"{i}. {it['source']} | {it['title']} | {it['summary'][:300]}" for i, it in enumerate(items, 1))
+    if kind == 'news':
+        task = ('아래는 최근 2일 해외 AI 기사 목록입니다 (번호. 출처 | 제목 | 요약문). 가장 중요하거나 우리 일에 쓸 만한 기사를 최대 3개 고르세요. '
+                '같은 사건을 다룬 기사는 1개만 고르세요. title_ko는 쉬운 한국어 제목 40자 이내, summary는 목록의 제목·요약문에서 '
+                '확인된 내용만 2문장 150자 이내, why_us는 우리 일에 어떤 의미인지 60자 이내(관련이 적으면 "직접 관련 적음").\n')
+    else:
+        task = ('아래는 오늘 깃허브(개발자들이 프로그램을 공유하는 곳) 인기 저장소 목록입니다 (번호. 출처 | 이름 | 설명). '
+                'AI·자동화와 관련된 도구만 최대 3개 고르고, 없으면 빈 목록을 주세요. title_ko는 도구 이름과 한 줄 뜻(40자 이내), '
+                'summary는 설명에서 확인된 기능만 2문장 150자 이내, why_us는 우리 일에 쓸 곳 60자 이내(없으면 "직접 쓸 곳 적음"). '
+                '설치나 코딩이 필요하면 score_easy를 낮게 주세요.\n')
+    prompt = (task + US + SCORE_RULE + 'index는 목록 번호입니다. 10살 어린이도 이해할 쉬운 말로 쓰세요. '
+              '목록에 없는 사실·가격·수치를 지어내지 말고, 금액은 원문 단위 그대로 쓰고 다른 통화로 바꾸지 마세요.\n\n' + listing)
+    data = generate_with_retry(client, prompt, EXTRA_SCHEMA, None, delays=WEEKLY_RETRY_DELAYS)
+    picked, used = [], set()
+    for card in data['cards'][:3]:
+        idx = card.get('index')
+        if not isinstance(idx, int) or not 1 <= idx <= len(items) or idx in used:
+            continue
+        used.add(idx)
+        score_total(card)
+        src = items[idx - 1]
+        card.update(url=src['url'], source=src['source'], orig_title=src['title'])
+        picked.append(card)
+    return sorted(picked, key=lambda c: c['score_total'], reverse=True)
+
+
+def collect_extras(client, now, seen, pause=0):
+    extras = {'news': [], 'tools': [], 'failed': []}
+    try:
+        news, failed_feeds = news_candidates(now, skip=set(seen))
+        extras['failed'] += failed_feeds
+        print(f'해외 기사 후보 {len(news)}개', flush=True)
+        extras['news'] = pick_extras(client, 'news', news)
+    except Exception as exc:  # 뉴스가 실패해도 나머지는 계속
+        print(f'해외 뉴스 실패: {type(exc).__name__}', flush=True)
+        extras['failed'].append('해외 뉴스')
+    if pause > 0:
+        time.sleep(pause)
+    try:
+        tools = github_daily(set(seen))
+        print(f'깃허브 오늘 인기 후보 {len(tools)}개', flush=True)
+        extras['tools'] = pick_extras(client, 'tools', tools)
+    except Exception as exc:
+        print(f'깃허브 인기 도구 실패: {type(exc).__name__}', flush=True)
+        extras['failed'].append('깃허브 인기 도구')
+    return extras
+
+
+def extra_sections_md(extras):
+    lines = []
+    for key, head in (('news', '## 해외 AI 뉴스 (기사 제목·요약문 기준)'), ('tools', '## 깃허브 오늘 인기 AI 도구')):
+        lines += [head, '']
+        if not extras.get(key):
+            lines += ['- 이번에는 고를 만한 것 없음', '']
+        for c in extras.get(key, []):
+            lines += [f"### [{c['title_ko']}]({c['url']}) — {c['source']}",
+                      f"- 점수 {c['score_total']}/100 (확신 {c['confidence']})", f"- {c['summary']}",
+                      f"- 우리 일에는: {c['why_us']}", '']
+    if extras.get('failed'):
+        lines += ['읽지 못한 곳: ' + ', '.join(extras['failed']), '']
+    return lines
+
+
 def load_seen(folder):
     try:
         return json.loads((folder / 'seen.json').read_text(encoding='utf-8'))
@@ -569,14 +747,18 @@ def run_weekly(client, now=None, daily=False):
         videos, failed = weekly_candidates(now, days=2, count=env_number('DAILY_COUNT', 3), skip_ids=set(seen))
     else:
         videos, failed = weekly_candidates(now)
-    if not videos:
+    pause = env_number('WEEKLY_PAUSE', 45)
+    extras = collect_extras(client, now, seen, pause) if daily else None
+    has_extras = bool(extras and (extras['news'] or extras['tools']))
+    if not videos and not has_extras:
         if daily:
-            print('오늘은 새 영상이 없습니다 (쇼츠·이미 보낸 영상 제외). 메일 없이 끝냅니다.', flush=True)
+            print('오늘은 새 영상·기사·도구가 없습니다. 메일 없이 끝냅니다.', flush=True)
             return []
         raise ValueError('최근 7일 영상(쇼츠 제외)을 찾지 못했습니다.')
     print(f'고른 영상 {len(videos)}편, 읽지 못한 채널 {len(failed)}곳', flush=True)
     (OUT / 'sources.json').write_text(json.dumps(videos, ensure_ascii=False, indent=2), encoding='utf-8')
-    pause = env_number('WEEKLY_PAUSE', 45)
+    if videos and has_extras and pause > 0:
+        time.sleep(pause)
 
     def summarize(i, video):
         print(f'[{i}/{len(videos)}] {video["channel"]} 요약 시작', flush=True)
@@ -612,31 +794,35 @@ def run_weekly(client, now=None, daily=False):
             render_weekly(r['data'], r['video'], r['image'])
     (OUT / 'digest.json').write_text(json.dumps([{'video': r['video'], 'data': r['data']} for r in results],
                                                 ensure_ascii=False, indent=2), encoding='utf-8')
-    markdown = weekly_markdown(results, failed, now_kst, daily)
+    markdown = weekly_markdown(results, failed, now_kst, daily, extras)
     (OUT / 'weekly.md').write_text(markdown, encoding='utf-8')
     (archive / f'{now_kst:%Y-%m-%d}.md').write_text(markdown, encoding='utf-8')
     (archive / 'latest.md').write_text(markdown, encoding='utf-8')
     if daily:  # 요약에 성공한 영상만 '보냄'으로 기록 (실패한 영상은 내일 다시 시도)
-        seen = (seen + [r['video']['video_id'] for r in ok])[-300:]
+        seen = seen + [r['video']['video_id'] for r in ok]
+        seen += [c['url'] for c in extras['news']] + ['gh:' + c['orig_title'] for c in extras['tools']]
+        seen = seen[-500:]
         (archive / 'seen.json').write_text(json.dumps(seen, indent=0), encoding='utf-8')
     hour = min(23, max(0, env_number('WEEKLY_EVENT_HOUR', 22)))
     (OUT / 'ai-digest.ics').write_text(build_ics(results, now_kst, hour), encoding='utf-8', newline='')
     if daily:
-        update_calendar_feed(archive, results, now_kst, hour)
+        update_calendar_feed(archive, results, now_kst, hour, extras)
     with ZipFile(OUT / 'merry_ai_digest.zip', 'w', ZIP_DEFLATED) as z:
         for p in sorted(OUT.glob('weekly_*.png')):
             z.write(p, p.name)
         for name in ('sources.json', 'digest.json', 'weekly.md', 'ai-digest.ics'):
             z.write(OUT / name, name)
-    if not ok:
+    if not ok and not has_extras:
         raise RuntimeError('영상 요약이 모두 실패했습니다.')
     sender, password = os.getenv('GMAIL_ADDRESS', '').strip(), os.getenv('GMAIL_APP_PASSWORD', '').replace(' ', '').strip()
     if not sender or not password:
         print(f'메일 설정 없음: 메일은 건너뜁니다 (결과는 ZIP과 {archive}/ 폴더에 있음).', flush=True)
     else:
-        send_email(build_email(results, failed, now_kst, sender, hour, daily), sender, password)
+        send_email(build_email(results, failed, now_kst, sender, hour, daily, extras), sender, password)
         print('메일 보냄.', flush=True)
-    print(f'다이제스트 완료: 성공 {len(ok)}편 / 전체 {len(results)}편', flush=True)
+    print(f'다이제스트 완료: 영상 성공 {len(ok)}편 / 전체 {len(results)}편', flush=True)
+    if extras:
+        print(f"해외 기사 {len(extras['news'])}개, 깃허브 도구 {len(extras['tools'])}개", flush=True)
     return results
 
 
