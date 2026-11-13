@@ -27,6 +27,9 @@ from youtube_transcript_api import YouTubeTranscriptApi
 OUT = Path('output_digest')
 OUT.mkdir(exist_ok=True)
 CHANNELS = {item['name']: item['id'] for item in json.loads(Path('channels.json').read_text(encoding='utf-8'))}
+KR_PATH = Path('channels_kr.json')
+KR_CHANNELS = ({item['name']: item['id'] for item in json.loads(KR_PATH.read_text(encoding='utf-8'))}
+               if KR_PATH.exists() else {})
 TIMEOUT = 15
 SCHEMA = {
     'type': 'object',
@@ -70,7 +73,7 @@ def transcript(vid):
 def rss_candidates():
     ns = {'a': 'http://www.w3.org/2005/Atom', 'yt': 'http://www.youtube.com/xml/schemas/2015'}
     candidates = []
-    for name, cid in CHANNELS.items():
+    for name, cid in (CHANNELS if channels is None else channels).items():
         try:
             resp = requests.get('https://www.youtube.com/feeds/videos.xml', params={'channel_id': cid}, timeout=TIMEOUT)
             resp.raise_for_status()
@@ -251,8 +254,9 @@ WEEKLY_SCHEMA['properties'].update({k: {'type': 'integer', 'minimum': 0, 'maximu
 WEEKLY_SCHEMA['properties'].update({
     'confidence': {'type': 'string', 'enum': ['높음', '보통', '낮음']},
     'reason': {'type': 'string'}, 'try_next': {'type': 'string'}, 'ch6_idea': {'type': 'string'},
+    'claude_tip': {'type': 'string'},
 })
-WEEKLY_SCHEMA['required'] = SCHEMA['required'] + list(SCORE_MAX) + ['confidence', 'reason', 'try_next', 'ch6_idea']
+WEEKLY_SCHEMA['required'] = SCHEMA['required'] + list(SCORE_MAX) + ['confidence', 'reason', 'try_next', 'ch6_idea', 'claude_tip']
 
 
 def env_number(name, default):
@@ -262,12 +266,12 @@ def env_number(name, default):
         return default
 
 
-def weekly_candidates(now=None, days=7, count=None, skip_ids=()):
+def weekly_candidates(now=None, days=7, count=None, skip_ids=(), channels=None, group='해외'):
     """채널 RSS에서 최근 영상(쇼츠 제외)을 조회수 순으로 고른다. 실패한 채널은 건너뛴다."""
     now = now or datetime.now(timezone.utc)
     since = now - timedelta(days=days)
     videos, failed = [], []
-    for name, cid in CHANNELS.items():
+    for name, cid in (CHANNELS if channels is None else channels).items():
         try:
             resp = requests.get('https://www.youtube.com/feeds/videos.xml', params={'channel_id': cid}, timeout=TIMEOUT)
             resp.raise_for_status()
@@ -296,7 +300,7 @@ def weekly_candidates(now=None, days=7, count=None, skip_ids=()):
                 views = 0
             videos.append({'url': f'https://www.youtube.com/watch?v={vid}', 'video_id': vid, 'channel': name,
                            'title': entry.findtext('a:title', namespaces=FEED_NS) or '', 'published': published,
-                           'views': views})
+                           'views': views, 'group': group})
     videos.sort(key=lambda v: v['views'], reverse=True)
     per_channel = max(1, env_number('WEEKLY_PER_CHANNEL', 1))  # 한 채널이 독차지하지 않게
     picked, counts = [], {}
@@ -324,6 +328,7 @@ def weekly_prompt(video):
         'ch6_idea는 「AI한테 시켜봤습니다」 쇼츠 채널(작은 가게 사장이 AI에게 실제로 일을 맡겨 보는 기록)의 소재 한 줄(80자 이내)입니다. '
         '"사장님이 이걸 AI한테 시켜 보면?" 형태로 쓰고, 영상에 나온 AI 기능으로 가게 일(주문 정리, 상품 소개 글, 손님 답장, 사진, 재고, 블로그·쇼츠)을 '
         '실제로 맡겨 볼 수 있을 때만 쓰세요. 억지로 연결하지 말고, 연구·이론·업계 소식처럼 직접 맡길 일이 없으면 "해당 없음"이라고 쓰세요.\n'
+        'claude_tip은 영상에 나온 AI 사용법 중 우리가 Claude(클로드)에게 일을 시킬 때 바로 적용할 점 한 줄(80자 이내, 예: 지시문 쓰는 법, 작업 순서, 확인 방법)입니다. 적용할 점이 없으면 "해당 없음"이라고 쓰세요.\n'
         '가격·수치·후기를 지어내지 말고, 영상에서 확인하지 못한 사실은 만들지 마세요. '
         '금액은 영상에 나온 단위 그대로 쓰고, 원화 등 다른 통화로 바꾸거나 직접 계산하지 마세요.'
     )
@@ -425,8 +430,11 @@ def update_calendar_feed(archive, results, now_kst, hour, extras=None):
     lines = ['[유튜브]'] if ok else []
     for i, r in enumerate(ok, 1):
         d, v = r['data'], r['video']
-        lines += [f"{i}. {d['title']} ({d['score_total']}점)", d['cards'][0]['desc'][:180],
-                  f"해볼 만한 것: {d.get('try_next', '')}", v['url'], '']
+        lines += [f"{i}. [{v.get('group', '해외')}] {d['title']} ({d['score_total']}점)", d['cards'][0]['desc'][:180],
+                  f"해볼 만한 것: {d.get('try_next', '')}"]
+        if has_tip(d):
+            lines.append(f"클로드에 적용할 점: {d['claude_tip']}")
+        lines += [v['url'], '']
     for label, group in (('[해외 뉴스]', news), ('[깃허브 인기 도구]', tools)):
         if group:
             lines.append(label)
@@ -473,24 +481,54 @@ def ch6_ideas(results):
     return ideas
 
 
+def has_tip(d):
+    tip = (d or {}).get('claude_tip', '').strip()
+    return bool(tip) and '해당 없음' not in tip
+
+
+def claude_tip_lines(results):
+    return [f"- {r['data']['claude_tip']} — 출처: [{r['video']['title']}]({r['video']['url']}) "
+            f"({r['video'].get('group', '해외')} · {r['video']['channel']})" for r in results if has_tip(r['data'])]
+
+
+def save_claude_tips(archive, results, now_kst):
+    """3번 방 일요일 적용 시험용: 날짜별로 계속 쌓는다 (daily/claude-tips.md)."""
+    tips = claude_tip_lines(results)
+    if not tips:
+        return
+    path = archive / 'claude-tips.md'
+    old = path.read_text(encoding='utf-8') if path.exists() else '# 클로드에 적용할 점 (AI 다이제스트, 날짜별)\n\nAI 요약이라 실제 적용 전 원본 영상으로 확인 필요.\n'
+    head = f'\n## {now_kst:%Y-%m-%d}\n'
+    if head in old:  # 같은 날 두 번째 실행이면 그날 칸 아래에 붙인다
+        old = old.replace(head, head + '\n'.join(tips) + '\n', 1)
+    else:
+        old += head + '\n'.join(tips) + '\n'
+    path.write_text(old, encoding='utf-8')
+
+
 def weekly_markdown(results, failed, now_kst, daily=False, extras=None):
     lines = [f'# MERRY AI 다이제스트 {now_kst:%Y-%m-%d} ({digest_label(now_kst, daily)})', '',
              'AI 요약이라 사실관계는 원본 영상으로 확인 필요. 점수는 우리가 써 보기 전이라 69점이 상한.', '',
              '## 6번 채널(AI한테 시켜봤습니다) 소재 후보', '']
     ideas = ch6_ideas(results)
     lines += [f"- {idea} — 출처: [{v['title']}]({v['url']}) ({v['channel']})" for idea, v in ideas] or ['- 이번에는 맞는 소재 없음']
+    lines += ['', '## 클로드에 적용할 점 (3번 방 일요일 적용 시험용)', '']
+    lines += claude_tip_lines(results) or ['- 이번에는 적용할 점 없음']
     lines += ['', '## 영상별 요약 (점수 높은 순)', '']
     for i, r in enumerate(results, 1):
         v, d = r['video'], r['data']
         lines.append(f"### {i}. [{v['title']}]({v['url']})")
-        lines.append(f"- {v['channel']} · 조회수 {v['views']:,}회 · 게시 {v['published'][:10]}")
+        lines.append(f"- [{v.get('group', '해외')}] {v['channel']} · 조회수 {v['views']:,}회 · 게시 {v['published'][:10]}")
         if not d:
             lines += ['- 요약 실패 (다음 주에 다시 시도하거나 직접 확인)', '']
             continue
         detail = ' / '.join(f'{k.replace("score_", "")} {d[k]}' for k in SCORE_MAX)
         lines += [f"- 점수 {d['score_total']}/100 (확신 {d['confidence']}) — {detail}",
                   f"- 핵심: {d['cards'][0]['head']}", f"- {d['cards'][0]['desc']}",
-                  f"- 이유: {d.get('reason', '')}", f"- 해볼 만한 것: {d.get('try_next', '')}", '']
+                  f"- 이유: {d.get('reason', '')}", f"- 해볼 만한 것: {d.get('try_next', '')}"]
+        if has_tip(d):
+            lines.append(f"- 클로드에 적용할 점: {d['claude_tip']}")
+        lines.append('')
     if failed:
         lines += ['읽지 못한 채널: ' + ', '.join(failed), '']
     if extras:
@@ -525,7 +563,7 @@ def build_email(results, failed, now_kst, sender, hour, daily=False, extras=None
     images = []
     for i, r in enumerate(results, 1):
         v, d = r['video'], r['data']
-        meta = f"{v['channel']} · 조회수 {v['views']:,}회"
+        meta = f"[{v.get('group', '해외')}] {v['channel']} · 조회수 {v['views']:,}회"
         parts.append(f'<hr><h3 style="margin-bottom:4px">{i}. <a href="{e(v["url"])}">{e(v["title"])}</a></h3><p style="color:#5b6570;margin-top:0">{e(meta)}</p>')
         plain += [f"{i}. {v['title']}", f'   {meta}', f"   {v['url']}"]
         if not d:
@@ -534,13 +572,17 @@ def build_email(results, failed, now_kst, sender, hour, daily=False, extras=None
             continue
         score = f"{d['score_total']}/100점 (확신 {d['confidence']})"
         parts.append(f'<p><b>{e(score)}</b> · {e(d["title"])}</p><p>{e(d["cards"][0]["desc"])}</p>'
-                     f'<p>이유: {e(d.get("reason", ""))}<br>해볼 만한 것: {e(d.get("try_next", ""))}</p>')
+                     f'<p>이유: {e(d.get("reason", ""))}<br>해볼 만한 것: {e(d.get("try_next", ""))}'
+                     + (f'<br>클로드에 적용할 점: {e(d["claude_tip"])}' if has_tip(d) else '') + '</p>')
         if r.get('image'):
             cid = make_msgid(domain='merry-ai-digest')
             images.append((cid, r['image']))
             parts.append(f'<img src="cid:{cid[1:-1]}" alt="핵심 한 장" style="width:100%;max-width:540px;border-radius:8px">')
         plain += [f'   {score}', f"   {d['cards'][0]['desc']}", f"   이유: {d.get('reason', '')}",
-                  f"   해볼 만한 것: {d.get('try_next', '')}", '']
+                  f"   해볼 만한 것: {d.get('try_next', '')}"]
+        if has_tip(d):
+            plain.append(f"   클로드에 적용할 점: {d['claude_tip']}")
+        plain.append('')
     if failed:
         parts.append(f'<p style="color:#5b6570">읽지 못한 채널: {e(", ".join(failed))}</p>')
         plain.append('읽지 못한 채널: ' + ', '.join(failed))
@@ -745,6 +787,11 @@ def run_weekly(client, now=None, daily=False):
     seen = load_seen(archive) if daily else []
     if daily:
         videos, failed = weekly_candidates(now, days=2, count=env_number('DAILY_COUNT', 3), skip_ids=set(seen))
+        if KR_CHANNELS:  # 한국 AI 유튜버 묶음: 최근 3일, 쇼츠 제외, 채널당 1편, 조회수 상위 2편 (무료 한도 안에서)
+            kr, kr_failed = weekly_candidates(now, days=3, count=env_number('DAILY_KR_COUNT', 2), skip_ids=set(seen),
+                                              channels=KR_CHANNELS, group='한국')
+            videos += kr
+            failed += kr_failed
     else:
         videos, failed = weekly_candidates(now)
     pause = env_number('WEEKLY_PAUSE', 45)
@@ -807,6 +854,7 @@ def run_weekly(client, now=None, daily=False):
     (OUT / 'ai-digest.ics').write_text(build_ics(results, now_kst, hour), encoding='utf-8', newline='')
     if daily:
         update_calendar_feed(archive, results, now_kst, hour, extras)
+        save_claude_tips(archive, results, now_kst)
     with ZipFile(OUT / 'merry_ai_digest.zip', 'w', ZIP_DEFLATED) as z:
         for p in sorted(OUT.glob('weekly_*.png')):
             z.write(p, p.name)

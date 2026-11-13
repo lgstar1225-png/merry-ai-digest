@@ -35,3 +35,4 @@ Independent from `ai-secretary` and `써보니`.
 - 주간 모드(WEEKLY_YOUTUBE)는 손으로 실행할 때만 씁니다.
 - 구글 캘린더 구독 주소(매일 밤 10시 일정, 최근 60일): https://raw.githubusercontent.com/lgstar1225-png/merry-ai-digest/main/daily/calendar.ics — 구글 캘린더 웹 → 다른 캘린더 + → URL로 추가.
 - 11/12부터 매일 모드에 해외 AI 뉴스(TechCrunch AI, The Verge AI, MIT Technology Review AI의 무료 RSS, 기사 제목·요약문 기준)와 깃허브 오늘 인기 AI 도구를 각 최대 3개 더함. 같은 기사·도구는 다시 고르지 않음.
+- 11/14부터 한국 AI 유튜버 13곳(`channels_kr.json`)을 따로 묶어 최근 3일·쇼츠 제외·채널당 1편·조회수 상위 2편(`DAILY_KR_COUNT`)을 더함. 영상마다 "클로드에 적용할 점" 한 줄, 날짜별로 `daily/claude-tips.md`에 쌓음.
