@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261113T142812Z
+DTSTAMP:20261113T223550Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261113T142812Z
+DTSTAMP:20261113T223550Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,7 +127,7 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261113T142812Z
+DTSTAMP:20261113T223550Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
@@ -272,5 +272,36 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
   설정 없이 인공지능을 돌립니다.\n우리 일에는: 직접 쓸
   곳 적음\nhttps://github.com/ggml-org/llama.cpp\n\nAI 요약이라 사
  실관계는 원본 영상·기사로 확인 필요
+END:VEVENT
+BEGIN:VEVENT
+UID:merry-ai-digest-daily-20261114@merry-ai-digest
+DTSTAMP:20261113T223550Z
+DTSTART;TZID=Asia/Seoul:20261114T220000
+DTEND;TZID=Asia/Seoul:20261114T221500
+SUMMARY:AI 뉴스(영상 0·기사 3·도구 1): 회의 내용 정리를 
+ 도와주는 일레븐랩스 앱
+DESCRIPTION:[해외 뉴스]\n- 회의 내용 정리를 도와주는 일레
+ 븐랩스 앱 (43점)\n일레븐랩스에서 팀과 기업을 위한 새
+ 로운 회의록 작성 및 받아쓰기 앱을 공개했다. 업무 중 
+ 대화를 기록하고 정리하는 데 도움을 준다.\n우리 일에
+ 는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/13/elevenlabs-ne
+ w-app-combines-meeting-note-taking-and-dictation-for-teams/\n\n- 챗GPT 
+ 지갑으로 인공지능이 대신 결제해요 (40점)\n챗GPT 지갑 
+ 기능으로 인공지능 비서가 사용자를 대신해 쇼핑하고 
+ 결제할 수 있게 되었다. 미국 프로 구독자들을 대상으로
+  제한적으로 먼저 시작된다.\n우리 일에는: 직접 관련 적
+ 음\nhttps://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-
+ shop-and-check-out-for-you/\n\n- 게임 개발에 생성형 인공지능
+ 을 더 많이 써요 (35점)\n설문조사에 따르면 더 많은 비디
+ 오 게임 개발자들이 업무에 생성형 인공지능 도구를 사
+ 용하고 있는 것으로 나타났다. 작년보다 사용 비율이 늘
+ 어났다.\n우리 일에는: 직접 관련 적음\nhttps://www.theverge.c
+ om/games/1032085/gdc-festival-of-gaming-annual-survey-ai-layoffs\n\n[깃
+ 허브 인기 도구]\n- 크롬 개발자 도구 MCP - 웹 도구 제어 (
+ 31점)\n코딩 에이전트를 위한 크롬 개발자 도구입니다. 
+ 웹 관련 작업을 자동화할 수 있습니다.\n우리 일에는: 홈
+ 페이지 관리 자동화\nhttps://github.com/ChromeDevTools/chrome-devto
+ ols-mcp\n\nAI 요약이라 사실관계는 원본 영상·기사로 확인
+  필요
 END:VEVENT
 END:VCALENDAR
