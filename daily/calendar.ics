@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261112T224956Z
+DTSTAMP:20261113T142812Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261112T224956Z
+DTSTAMP:20261113T142812Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,58 +127,150 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261112T224956Z
+DTSTAMP:20261113T142812Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
-SUMMARY:AI 뉴스(영상 2·기사 3·도구 3): AI가 증명한 완벽한 
- 보안 코드
-DESCRIPTION:[유튜브]\n1. AI가 증명한 완벽한 보안 코드 (40점)
- \n딥마인드 연구팀의 알파프루프 코드가 4주 동안 650만 
- 줄의 수학적 증명을 생성해 메신저 암호화 코드(libsignal)
- 의 안전성을 검증했습니다. 다만 전체 앱이나 그룹챗이 
- 아닌 일부 암호화 프로토콜만 다루며 우리 부자재 사업
- 에 직접 쓰기는 어렵습니다.\n해볼 만한 것: 보안 관련 
- 최신 AI 도구 뉴스 살펴보기\nhttps://www.youtube.com/watch?v=gPNi
- uyYirfw\n\n2. 엔비디아 CEO의 중국 스캔들 (24점)\n싱가포르
- 와 말레이시아의 페이퍼컴퍼니 메가스피드가 2년간 48억
-  달러 이상의 엔비디아 칩을 구매하고 알리바바 등에 컴
- 퓨팅 파워를 임대해 미국의 대중국 수출 규제를 우회했
- 다는 의혹이 제기되었습니다. CEO 젠슨 황은 관련 여성과
- 의 관계 의혹 및 이사회 사임으로 주가 하락을 겪었습니
- 다. 동대문 부자재 1인 사업장의 마케팅이나 \n해볼 만한
-  것: 해당 없음\nhttps://www.youtube.com/watch?v=SOwUWPtXQ9I\n\n[해
- 외 뉴스]\n- 구글 검색의 업그레이드 (25점)\n구글의 새로
- 운 AI 모드는 더 복잡한 질문을 이해하고 관련 링크를 보
- 여주며 풍부한 시각적 답변을 제공합니다. 이 기능은 제
- 미나이 4 하이드로겐 모델을 바탕으로 작동합니다.\n우
- 리 일에는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/12/goo
- gles-latest-search-upgrade-promises-better-answers-to-your-most-complicate
- d-questions/\n\n- 브랜드와 인플루언서를 연결하는 AI 에이
- 전트 (25점)\n넥타의 새로운 AI 에이전트는 브랜드의 인플
- 루언서 마케팅을 자동화합니다. 크리에이터를 찾고 연
- 락하며 캠페인 결과를 추적하는 일을 돕습니다.\n우리 
- 일에는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/12/nectar-
- launches-an-ai-agent-to-automate-creator-discovery-and-outreach-for-brands
- /\n\n- 일상 사진을 전문가처럼 바꿔주는 AI (25점)\n포타 
- 랩스는 AI 기술을 이용해 평범한 사진을 전문가처럼 보
- 이게 만들어 줍니다. 누구나 일상의 순간을 더 좋은 사
- 진으로 쉽게 바꾸도록 편집 과정을 자동화합니다.\n우리
-  일에는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/12/phota-
- labs-uses-ai-to-turn-everyday-photos-into-professional-looking-shots/\n\n[
- 깃허브 인기 도구]\n- free-claude-code - 무료 인공지능 도구 
- 모음 (51점)\n여러 종류의 인공지능 코딩 도구를 무료로 
- 쓸 수 있게 돕는 프로그램입니다. 터미널이나 앱에서 여
- 러 인공지능을 함께 쓸 수 있습니다.\n우리 일에는: 블로
- 그나 홈페이지 만들 때 인공지능을 공짜로 쓸 수 있습니
- 다.\nhttps://github.com/Alishahryar1/free-claude-code\n\n- TensorFold - 
- 인공지능 모델 구동 엔진 (30점)\n컴퓨터에서 인공지능 
- 모델을 빠르게 실행하는 프로그램입니다. 그래픽카드 
- 성능을 활용해 인공지능을 돌립니다.\n우리 일에는: 직
- 접 쓸 곳 적음\nhttps://github.com/ashhart/TensorFold\n\n- llama.cpp -
-  가벼운 인공지능 실행기 (30점)\n컴퓨터에서 인공지능을
-  가볍고 빠르게 실행할 수 있게 만들어 주는 도구입니다
- . 복잡한 설정 없이 인공지능을 돌립니다.\n우리 일에는:
-  직접 쓸 곳 적음\nhttps://github.com/ggml-org/llama.cpp\n\nAI 요약
- 이라 사실관계는 원본 영상·기사로 확인 필요
+SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
+ 데이트 총정리
+DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
+ 정리 (61점)\n영상에서는 윈도우/맥 앱 내 환경 설정\, 리
+ 모컨 기능\, 세션 레일\, 중첩 세션 등을 활용해 기획서·
+ 제안서·이미지를 동시에 뚝딱 만드는 법을 보여줍니다.
+  1인 사업자의 블로그나 쇼츠 기획에 응용할 수 있으나\,
+  아직 직접 테스트 전이며 서버 연동 시 개인정보 보안 
+ 주의가 필요합니다.\n해볼 만한 것: 클로드 앱에서 로컬 
+ 환경 폴더를 연결해 간단한 글을 작성해 보세요.\n클로
+ 드에 적용할 점: 큰 일을 맡길 때는 지시문 끝에 '시작 
+ 전에 계획부터 보여 줘' 한 줄만 붙여 보세요.\nhttps://www.
+ youtube.com/watch?v=mP2mWReIzck\n\n2. [해외] AI로 나만의 비즈니
+ 스 운영체제 만들기 (57점)\n피터 양은 구글 문서와 연동
+ 해 매일 아침 이메일과 일정을 자동 요약받고\, 프롬프
+ 트 수정도 AI에 맡깁니다. 동대문 1인 사장님도 매일 들
+ 어오는 거래처 문의나 블로그 글감을 아침마다 요약받
+ 는 데 바로 적용할 수 있습니다. 다만 연동 도구 설정이 
+ 어렵고 손님 답장 글은 사장님이 직접 검수해야 합니다.
+ \n해볼 만한 것: 클로드 프로젝트에 '가게 운영 목표 1장'
+  문서를 넣고 사업 조언을 구해보세요.\n클로드에 적용
+ 할 점: AI가 글을 수정할 때 기존 문장과 바뀐 문장을 번
+ 호 목록으로 전후 비교해서 보여달라고 지시하세요.\nhtt
+ ps://www.youtube.com/watch?v=pvl3z_GyU2Y\n\n3. [해외] 구글 제미나
+ 이 4 카본 등장 (50점)\n구글이 공개한 제미나이 4 카본은 
+ 복잡한 코딩과 보안\, 긴 문서 분석에 뛰어납니다. API 가
+ 격은 입력 100만 토큰당 $2\, 출력 100만 토큰당 $10이며 12
+ 월 1일 두 배로 인상될 예정입니다. 다만 첫 토큰 출력까
+ 지 약 67초가 걸릴 정도로 속도가 매우 느리고 긴 작업 
+ 시간이 필요하다는 한계가 있습니다.\n해볼 만한 것: 무
+ 료 체험 기간에 텍스트 요약 작업 한 번 해보기\n클로드
+ 에 적용할 점: 긴 지시문과 복잡한 작업은 먼저 가벼운 
+ 모델로 초안을 잡은 뒤 강력한 모델로 검토하기\nhttps://w
+ ww.youtube.com/watch?v=VMraE40YKrU\n\n4. [해외] AI 언어모델 학습 
+ 원리 쉽게 알기 (47점)\n영상은 사전 학습부터 강화 학습
+ 까지 AI가 글을 배우는 원리를 보여줍니다. Google Colab에
+ 서 5억 개 변수를 가진 Qwen 0.5B 모델과 PyTorch 코드로 실습
+ 하는 사례가 나옵니다. 하지만 이는 AI 원리 설명이라 동
+ 대문 부자재 1인 가게의 블로그나 쇼츠 제작 같은 실무
+ 에 바로 쓰기는 어렵습니다. AI 작동\n해볼 만한 것: 무료
+  구글 코랩에서 제시된 코드 예제를 실행하며 AI 학습 과
+ 정을 직접 관찰해보기\n클로드에 적용할 점: 클로드에게
+  복잡한 문제나 계산을 시킬 때 프롬프트에 '단계별로 
+ 생각해보자'라는 문구를 넣으세요.\nhttps://www.youtube.com/wa
+ tch?v=Sjdvu4nHfDk\n\n5. [한국] 기이한 상점에 등장한 브롤패
+ 스 스킨 (0점)\n브롤스타즈 게임 안의 기이한 상점에서 
+ 시즌 43 패스 스킨인 역병 의사 크로우가 블링으로 등장
+ 했습니다. 영상에서는 블링으로 스킨을 구매하는 과정
+ 과 핫존 및 솔로 쇼다운 모드 플레이를 보여줍니다. 게
+ 임 내 소식과 단순 상점 업데이트 내용이라 1인 사업에 
+ 직접 쓰기는 어렵습니다.\n해볼 만한 것: 해당 없음\nhttps
+ ://www.youtube.com/watch?v=SQACQRKVFms\n\n[해외 뉴스]\n- 클로드의 
+ 새로운 AI 비서 기능 사용기 (45점)\n앤스로픽이 일반 소
+ 비자를 위해 만든 AI 에이전트 클로드 듀엣이 공개됐다. 
+ 코드를 쓰지 않는 사람도 유용하게 쓸 수 있도록 돕는 
+ 새로운 시도다.\n우리 일에는: 블로그 글 작성이나 자동
+ 화 도구로 쓸 수 있는지 살펴볼 가치가 있다.\nhttps://www.t
+ heverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-
+ on\n\n- 구글 제미나이 새 모델의 복잡한 질문 이해력 (43
+ 점)\n구글의 새로운 제미나이 4 하이드로젠 모델이 복잡
+ 한 질문에 더 유용한 답을 줄 수 있게 되었다. 여러 부분
+ 이 섞인 질문이나 오타가 많은 질문을 나누어 처리한다.
+ \n우리 일에는: 고객 응대나 상품 설명 자동화에 활용할 
+ 가능성이 있는지 확인해봐야 한다.\nhttps://www.theverge.com/a
+ i-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen\
+ n\n- AI 챗봇이 가짜 쇼핑몰을 추천한다는 연구 결과 (27점
+ )\n쇼핑객이 상품을 찾기 위해 AI 챗봇을 쓸 때 가짜 사이
+ 트나 위험한 웹사이트로 안내될 수 있다는 연구 결과가 
+ 나왔다. 지식재산권 보호 기업의 조사 내용이다.\n우리 
+ 일에는: 직접 관련 적음\nhttps://www.theverge.com/ai-artificial-in
+ telligence/1032020/gemini-chatgpt-perplexity-shopping-test-risky-fake-webs
+ ites-citations\n\n[깃허브 인기 도구]\n- 오픈코드리뷰 - AI 코
+ 드 검토 도구 (37점)\n알리바바 규모에서 검증된 빠르고 
+ 안전한 하이브리드 아키텍처 코드 리뷰 도구입니다. 정
+ 확한 줄 단위 주석과 다국어 규칙 세트를 지원합니다.\n
+ 우리 일에는: 직접 쓸 곳 적음\nhttps://github.com/alibaba/open-c
+ ode-review\n\n- 데일리주식분석 - AI 주식 분석 시스템 (27점)
+ \n다중 시장 주식 데이터를 기반으로 실시간 뉴스와 의
+ 사결정 대시보드를 제공하는 AI 시스템입니다. 자동 알
+ 림 기능과 제로 비용 예약 실행을 지원합니다.\n우리 일
+ 에는: 직접 쓸 곳 적음\nhttps://github.com/ZhuLinsen/daily_stock_an
+ alysis\n\n- 클로드트레이딩스킬 - 투자자용 분석 기술 (27
+ 점)\n주식 투자자와 트레이더를 위한 클로드 코드 기술 
+ 모음입니다. 시장 분석\, 기술적 차트\, 경제 캘린더 기
+ 능을 제공합니다.\n우리 일에는: 직접 쓸 곳 적음\nhttps://
+ github.com/tradermonty/claude-trading-skills\n\n6번 채널 소재: 사장
+ 님이 이걸 AI한테 시켜 보면? 클로드 2.0을 써서 동대문 
+ 부자재 신상품 소개 글과 인스타 홍보 이미지를 한 번에
+  만들어 보기 / 사장님이 이걸 AI한테 시켜 보면? 매일 아
+ 침 들어온 신상 원단 문의 메일을 요약해서 우선순위 목
+ 록으로 만들어 달라고 하기. / 사장님이 이걸 AI한테 시
+ 켜 보면? 500페이지짜리 의류 도매 장부를 카본에게 주고
+  3초 만에 분석시키기 (실패)\n\nAI 요약이라 사실관계는 
+ 원본 영상·기사로 확인 필요\n\n[같은 날 앞선 실행]\n[유
+ 튜브]\n1. AI가 증명한 완벽한 보안 코드 (40점)\n딥마인드 
+ 연구팀의 알파프루프 코드가 4주 동안 650만 줄의 수학적
+  증명을 생성해 메신저 암호화 코드(libsignal)의 안전성을
+  검증했습니다. 다만 전체 앱이나 그룹챗이 아닌 일부 
+ 암호화 프로토콜만 다루며 우리 부자재 사업에 직접 쓰
+ 기는 어렵습니다.\n해볼 만한 것: 보안 관련 최신 AI 도구
+  뉴스 살펴보기\nhttps://www.youtube.com/watch?v=gPNiuyYirfw\n\n2. 
+ 엔비디아 CEO의 중국 스캔들 (24점)\n싱가포르와 말레이시
+ 아의 페이퍼컴퍼니 메가스피드가 2년간 48억 달러 이상
+ 의 엔비디아 칩을 구매하고 알리바바 등에 컴퓨팅 파워
+ 를 임대해 미국의 대중국 수출 규제를 우회했다는 의혹
+ 이 제기되었습니다. CEO 젠슨 황은 관련 여성과의 관계 
+ 의혹 및 이사회 사임으로 주가 하락을 겪었습니다. 동대
+ 문 부자재 1인 사업장의 마케팅이나 \n해볼 만한 것: 해
+ 당 없음\nhttps://www.youtube.com/watch?v=SOwUWPtXQ9I\n\n[해외 뉴스]
+ \n- 구글 검색의 업그레이드 (25점)\n구글의 새로운 AI 모
+ 드는 더 복잡한 질문을 이해하고 관련 링크를 보여주며 
+ 풍부한 시각적 답변을 제공합니다. 이 기능은 제미나이 
+ 4 하이드로겐 모델을 바탕으로 작동합니다.\n우리 일에
+ 는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/12/googles-lates
+ t-search-upgrade-promises-better-answers-to-your-most-complicated-question
+ s/\n\n- 브랜드와 인플루언서를 연결하는 AI 에이전트 (25
+ 점)\n넥타의 새로운 AI 에이전트는 브랜드의 인플루언서 
+ 마케팅을 자동화합니다. 크리에이터를 찾고 연락하며 
+ 캠페인 결과를 추적하는 일을 돕습니다.\n우리 일에는: 
+ 직접 관련 적음\nhttps://techcrunch.com/2026/11/12/nectar-launches-an
+ -ai-agent-to-automate-creator-discovery-and-outreach-for-brands/\n\n- 일
+ 상 사진을 전문가처럼 바꿔주는 AI (25점)\n포타 랩스는 AI
+  기술을 이용해 평범한 사진을 전문가처럼 보이게 만들
+ 어 줍니다. 누구나 일상의 순간을 더 좋은 사진으로 쉽
+ 게 바꾸도록 편집 과정을 자동화합니다.\n우리 일에는: 
+ 직접 관련 적음\nhttps://techcrunch.com/2026/11/12/phota-labs-uses-ai
+ -to-turn-everyday-photos-into-professional-looking-shots/\n\n[깃허브 
+ 인기 도구]\n- free-claude-code - 무료 인공지능 도구 모음 (51
+ 점)\n여러 종류의 인공지능 코딩 도구를 무료로 쓸 수 있
+ 게 돕는 프로그램입니다. 터미널이나 앱에서 여러 인공
+ 지능을 함께 쓸 수 있습니다.\n우리 일에는: 블로그나 홈
+ 페이지 만들 때 인공지능을 공짜로 쓸 수 있습니다.\nhttp
+ s://github.com/Alishahryar1/free-claude-code\n\n- TensorFold - 인공지
+ 능 모델 구동 엔진 (30점)\n컴퓨터에서 인공지능 모델을 
+ 빠르게 실행하는 프로그램입니다. 그래픽카드 성능을 
+ 활용해 인공지능을 돌립니다.\n우리 일에는: 직접 쓸 곳 
+ 적음\nhttps://github.com/ashhart/TensorFold\n\n- llama.cpp - 가벼운 
+ 인공지능 실행기 (30점)\n컴퓨터에서 인공지능을 가볍고 
+ 빠르게 실행할 수 있게 만들어 주는 도구입니다. 복잡한
+  설정 없이 인공지능을 돌립니다.\n우리 일에는: 직접 쓸
+  곳 적음\nhttps://github.com/ggml-org/llama.cpp\n\nAI 요약이라 사
+ 실관계는 원본 영상·기사로 확인 필요
 END:VEVENT
 END:VCALENDAR
