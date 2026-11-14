@@ -14,3 +14,8 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - AI에게 글을 시킬 때 '12가지 지켜야 할 규칙'과 '내 글 16개 샘플'을 함께 주기 — 출처: [Everything Alex Hormozi Said About Learning AI for 2027](https://www.youtube.com/watch?v=dlkZr61G6vA) (해외 · Nate Herk)
 - Claude Sheets(클로드 시트) 기능을 써서 부자재 수량과 단가를 자동 수식이 포함된 표로 정리해 달라고 요청해보세요. — 출처: [AI News: This Was The Wildest Week I’ve EVER Seen](https://www.youtube.com/watch?v=G_Jrexy_5Bg) (해외 · Matt Wolfe)
 - Claude에게 작업 자동화를 시킬 때 반복 명령이 무한 루프(무한 반복)에 빠지지 않게 횟수 제한 지시를 꼭 넣기 — 출처: [Gemini 4 Swarm is out of control...](https://www.youtube.com/watch?v=Sc6TriRAGnI) (해외 · Wes Roth)
+
+## 2026-11-15
+- 일을 시킬 때 요청 사항에 조건과 원하는 결과 모양을 명확하게 나누어 입력하세요. — 출처: [역대급 클로드 실전 사용법 2027](https://www.youtube.com/watch?v=Z2alL7ve3bg) (한국 · 그린코끼리 AI)
+- Claude에게 엑셀 원본 대신 열 이름과 데이터 형태만 전달하여 분석 보고서 양식을 설계하도록 지시하세요. — 출처: [회사 데이터, AI에 그냥 올려도 될까? 원본 없이 Claude Code로 분석](https://www.youtube.com/watch?v=nXpInKYlRfs) (한국 · 시민개발자 구씨)
+- 구체적인 지시문을 작성하고 작업 순서를 명확하게 전달하기 — 출처: [New Claude Fable 5.2 Is Insane (Yes, Again!)](https://www.youtube.com/watch?v=6RAjpFNnST8) (해외 · The AI Advantage)

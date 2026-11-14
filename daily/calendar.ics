@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261114T013753Z
+DTSTAMP:20261114T225831Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261114T013753Z
+DTSTAMP:20261114T225831Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,7 +127,7 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261114T013753Z
+DTSTAMP:20261114T225831Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
@@ -275,7 +275,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261114@merry-ai-digest
-DTSTAMP:20261114T013753Z
+DTSTAMP:20261114T225831Z
 DTSTART;TZID=Asia/Seoul:20261114T220000
 DTEND;TZID=Asia/Seoul:20261114T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드로 코딩 없이
@@ -400,5 +400,77 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드로 코딩 없이 AI 직원
  에는: 홈페이지 관리 자동화\nhttps://github.com/ChromeDevTools/c
  hrome-devtools-mcp\n\nAI 요약이라 사실관계는 원본 영상·기
  사로 확인 필요
+END:VEVENT
+BEGIN:VEVENT
+UID:merry-ai-digest-daily-20261115@merry-ai-digest
+DTSTAMP:20261114T225831Z
+DTSTART;TZID=Asia/Seoul:20261115T220000
+DTEND;TZID=Asia/Seoul:20261115T221500
+SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): 클로드를 전담 직원
+ 처럼 부리는 5단계 활용법
+DESCRIPTION:[유튜브]\n1. [한국] 클로드를 전담 직원처럼 부
+ 리는 5단계 활용법 (67점)\n영상에서는 340건 넘는 주문 엑
+ 셀을 시각화(그래프 정리)하고 캡처 사진으로 리뷰 답글
+ 을 썼습니다. 동대문 부자재 가게의 손님 문의 답장과 
+ 블로그 홍보글 작성에도 바로 쓸 수 있습니다. 다만 지
+ 메일 연동과 프로젝트 설정이 우리 가게 일에 제대로 맞
+ 는지 직접 써보며 확인할 필요가 있습니다.\n해볼 만한 
+ 것: 손님 문의 캡처 사진 한 장을 클로드에 업로드하고 
+ 답장 3가지 버전 받아보기\n클로드에 적용할 점: 일을 시
+ 킬 때 요청 사항에 조건과 원하는 결과 모양을 명확하게
+  나누어 입력하세요.\nhttps://www.youtube.com/watch?v=Z2alL7ve3bg\n
+ \n2. [한국] 개인정보 유출 없이 Claude Code로 엑셀 데이터 
+ 분석하기 (62점)\n영상은 고객명단 엑셀의 열 이름(스키
+ 마)만 Claude Code에 보내 가짜 데이터와 오프라인용 HTML 분
+ 석 도구를 만든 사례를 보여줍니다. 인터넷을 끈 상태로
+  내 PC에서 진짜 엑셀을 불러와 순매출과 단골을 안전하
+ 게 분석합니다. 다만 깃허브 연동과 코딩 지식이 필요해
+  1인 사업자가 당장 혼자 구축하기엔 장벽이 높습니다\n
+ 해볼 만한 것: 내 가게 고객 엑셀 파일에서 이름과 연락
+ 처를 지운 가짜 엑셀 파일을 하나 만들어 보기\n클로드
+ 에 적용할 점: Claude에게 엑셀 원본 대신 열 이름과 데이
+ 터 형태만 전달하여 분석 보고서 양식을 설계하도록 지
+ 시하세요.\nhttps://www.youtube.com/watch?v=nXpInKYlRfs\n\n3. [해외] 
+ 클로드 페이블 5.2 업데이트 소개 (45점)\n영상의 페이블 5
+ .2 모델은 3D 그래픽\, 인터랙티브 게임\, 슬라이드 제작 
+ 등 다양한 창의적 작업을 지원하며\, API 사용 비용과 토
+ 큰 사용량에 대한 구체적인 수치가 제시되었습니다. 우
+ 리 일에 바로 적용하기에는 한계가 있을 수 있으므로 신
+ 중한 접근이 필요합니다.\n해볼 만한 것: 클로드 모델을 
+ 사용하여 간단한 상품 소개 글을 작성해보기\n클로드에 
+ 적용할 점: 구체적인 지시문을 작성하고 작업 순서를 명
+ 확하게 전달하기\nhttps://www.youtube.com/watch?v=6RAjpFNnST8\n\n4. 
+ [해외] AI가 못 하는 유일한 것 (40점)\n영상에서는 AI가 음
+ 악 연주나 다양한 작업에서 놀라운 실력을 보여주지만\,
+  여전히 완벽하지 않고 실수를 반복한다는 점을 다룹니
+ 다. 우리 가게의 블로그나 쇼츠 제작에 바로 쓰기에는 
+ 연구 소개 단계의 내용이라 직접 적용하기 어렵습니다.\
+ n해볼 만한 것: 영상의 핵심 주제를 요약해달라고 클로
+ 드에게 시켜보기\nhttps://www.youtube.com/watch?v=x7iwI6WfWS0\n\n[
+ 해외 뉴스]\n- 인공지능 도구 기업 랭체인 삼십억 달러 
+ 가치 기록 (45점)\n인공지능 에이전트 스타트업인 랭체인
+ 이 삼십억 달러의 기업 가치를 기록했습니다. 랭체인은 
+ 자사 모델 관리 도구인 랭스미스의 고객이 칠천 명에 달
+ 한다고 밝혔습니다.\n우리 일에는: 직접 관련 적음\nhttps:
+ //techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/\
+ n\n- 문을 닫거나 실패한 인공지능 프로젝트 모음 (40점)\n
+ 애플의 시리와 오픈에이아이의 슈퍼 앱 등 실패하거나 
+ 문을 닫은 인공지능 프로젝트를 살펴봅니다. 기대에 미
+ 치지 못했거나 서비스를 종료한 인공지능 목록을 다룹
+ 니다.\n우리 일에는: 직접 관련 적음\nhttps://techcrunch.com/20
+ 26/11/14/the-ai-graveyard-a-running-list-of-projects-and-startups-that-did
+ nt-make-it/\n\n[깃허브 인기 도구]\n- 유니버 | AI와 함께 쓰
+ 는 오피스 도구 (50점)\nAI 오피스 SDK로 편집과 계산\, 협
+ 업 기능을 제품에 넣을 수 있습니다. 확장 가능한 오픈
+ 소스 코어로 만들어졌습니다.\n우리 일에는: 상품 표나 
+ 재고 정리 문서를 AI로 만들 때 쓸 수 있습니다.\nhttps://gi
+ thub.com/dream-num/univer\n\n6번 채널 소재: 사장님이 엑셀 주
+ 문 내역을 AI한테 주고 "어떤 부자재가 제일 잘 팔렸어?" 
+ 시켜 보면? / 사장님이 이걸 AI한테 시켜 보면? 가게 주문
+  엑셀의 글자 목록만 줄 테니 인터넷 없이 작동하는 매
+ 출 분석 웹페이지 만들어줘! / 사장님이 이걸 AI한테 시
+ 켜 보면? 클로드로 블로그 상품 소개 글을 자동으로 작
+ 성해 보기\n\nAI 요약이라 사실관계는 원본 영상·기사로 
+ 확인 필요
 END:VEVENT
 END:VCALENDAR
