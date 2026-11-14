@@ -266,8 +266,83 @@ def env_number(name, default):
         return default
 
 
+AGO_UNITS = {'second': 1 / 86400, 'minute': 1 / 1440, 'hour': 1 / 24, 'day': 1, 'week': 7, 'month': 30, 'year': 365}
+
+
+KO_AGO_UNITS = {'초': 'second', '분': 'minute', '시간': 'hour', '일': 'day', '주': 'week', '개월': 'month', '년': 'year'}
+
+
+def parse_views(text):
+    """'47K' '1.2M' '832' '47 thousand views' '조회수 3.5만회' → 정수. 모르면 0."""
+    m = re.search(r'([\d.,]+)\s*([KMB]|thousand|million|billion|천|만|억)?', text or '', re.I)
+    if not m:
+        return 0
+    try:
+        num = float(m.group(1).replace(',', ''))
+    except ValueError:
+        return 0
+    mult = {'k': 1e3, 'thousand': 1e3, 'm': 1e6, 'million': 1e6, 'b': 1e9, 'billion': 1e9,
+            '천': 1e3, '만': 1e4, '억': 1e8}.get((m.group(2) or '').lower(), 1)
+    return int(num * mult)
+
+
+def parse_ago(text, now):
+    """'7 hours ago' 'Streamed 2 days ago' '2일 전' '스트리밍 시간: 3시간 전' → 대략의 게시 시각. 모르면 None."""
+    m = re.search(r'(\d+)\s*(second|minute|hour|day|week|month|year)s?\s+ago', text or '', re.I)
+    if m:
+        return now - timedelta(days=int(m.group(1)) * AGO_UNITS[m.group(2).lower()])
+    m = re.search(r'(\d+)\s*(초|분|시간|일|주|개월|년)\s*전', text or '')
+    if m:
+        return now - timedelta(days=int(m.group(1)) * AGO_UNITS[KO_AGO_UNITS[m.group(2)]])
+    return None
+
+
+def page_entries(cid, now, korean=False):
+    """RSS가 안 될 때: 채널 '동영상' 탭(쇼츠는 따로라 안 섞임)에서 최근 영상 목록을 읽는다.
+    한국 채널은 한국어 화면으로 읽어야 제목이 자동 번역되지 않는다."""
+    lang = ({'hl': 'ko', 'gl': 'KR'}, 'ko-KR,ko') if korean else ({'hl': 'en', 'gl': 'US'}, 'en-US,en')
+    resp = requests.get(f'https://www.youtube.com/channel/{cid}/videos', params=lang[0],
+                        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                                               '(KHTML, like Gecko) Chrome/130 Safari/537.36',
+                                 'Accept-Language': lang[1]},
+                        cookies={'CONSENT': 'YES+1'}, timeout=TIMEOUT)
+    resp.raise_for_status()
+    m = re.search(r'var ytInitialData = (\{.*?\});</script>', resp.text, re.S)
+    if not m:
+        raise ValueError('채널 페이지에서 영상 목록을 찾지 못함')
+    found = []
+
+    def walk(o):
+        if isinstance(o, dict):
+            if 'lockupViewModel' in o:
+                found.append(o['lockupViewModel'])
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(json.loads(m.group(1)))
+    entries = []
+    for lv in found:
+        vid = lv.get('contentId')
+        if lv.get('contentType') != 'LOCKUP_CONTENT_TYPE_VIDEO' or not vid:
+            continue
+        md = lv.get('metadata', {}).get('lockupMetadataViewModel', {})
+        parts = []
+        for row in md.get('metadata', {}).get('contentMetadataViewModel', {}).get('metadataRows', []):
+            for part in row.get('metadataParts', []):
+                parts.append((part.get('text', {}).get('content', ''), part.get('accessibilityLabel', '')))
+        views = next((parse_views(label or text) for text, label in parts
+                      if 'view' in (label or text).lower() or '조회수' in (label or text)), 0)
+        pub = next((d for d in (parse_ago(label or text, now) for text, label in parts) if d is not None), None)
+        if pub is None:  # 예정된 생방송 등 게시 시각이 없으면 뺀다
+            continue
+        entries.append((vid, pub, md.get('title', {}).get('content', ''), views))
+    return entries
+
+
 def weekly_candidates(now=None, days=7, count=None, skip_ids=(), channels=None, group='해외'):
-    """채널 RSS에서 최근 영상(쇼츠 제외)을 조회수 순으로 고른다. 실패한 채널은 건너뛴다."""
+    """채널 RSS에서 최근 영상(쇼츠 제외)을 조회수 순으로 고른다. RSS가 안 되면 채널 동영상 탭을 읽는다. 둘 다 실패한 채널은 건너뛴다."""
     now = now or datetime.now(timezone.utc)
     since = now - timedelta(days=days)
     videos, failed = [], []
@@ -277,8 +352,15 @@ def weekly_candidates(now=None, days=7, count=None, skip_ids=(), channels=None, 
             resp.raise_for_status()
             root = ET.fromstring(resp.content)
         except (requests.RequestException, ET.ParseError) as exc:
-            print(f'채널 RSS 조회 실패, 건너뜀: {name} ({type(exc).__name__})', flush=True)
-            failed.append(name)
+            try:
+                for vid, pub, title, views in page_entries(cid, now, korean=(group == '한국')):
+                    if vid in skip_ids or pub < since:
+                        continue
+                    videos.append({'url': f'https://www.youtube.com/watch?v={vid}', 'video_id': vid, 'channel': name,
+                                   'title': title, 'published': pub.isoformat(), 'views': views, 'group': group})
+            except (requests.RequestException, ValueError, AttributeError) as exc2:
+                print(f'채널 조회 실패(RSS {type(exc).__name__}, 페이지 {type(exc2).__name__}), 건너뜀: {name}', flush=True)
+                failed.append(name)
             continue
         for entry in root.findall('a:entry', FEED_NS):
             vid = entry.findtext('yt:videoId', namespaces=FEED_NS)
