@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261113T223550Z
+DTSTAMP:20261114T013753Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261113T223550Z
+DTSTAMP:20261114T013753Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,7 +127,7 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261113T223550Z
+DTSTAMP:20261114T013753Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
@@ -275,33 +275,130 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261114@merry-ai-digest
-DTSTAMP:20261113T223550Z
+DTSTAMP:20261114T013753Z
 DTSTART;TZID=Asia/Seoul:20261114T220000
 DTEND;TZID=Asia/Seoul:20261114T221500
-SUMMARY:AI 뉴스(영상 0·기사 3·도구 1): 회의 내용 정리를 
- 도와주는 일레븐랩스 앱
-DESCRIPTION:[해외 뉴스]\n- 회의 내용 정리를 도와주는 일레
- 븐랩스 앱 (43점)\n일레븐랩스에서 팀과 기업을 위한 새
- 로운 회의록 작성 및 받아쓰기 앱을 공개했다. 업무 중 
- 대화를 기록하고 정리하는 데 도움을 준다.\n우리 일에
- 는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/13/elevenlabs-ne
- w-app-combines-meeting-note-taking-and-dictation-for-teams/\n\n- 챗GPT 
- 지갑으로 인공지능이 대신 결제해요 (40점)\n챗GPT 지갑 
- 기능으로 인공지능 비서가 사용자를 대신해 쇼핑하고 
- 결제할 수 있게 되었다. 미국 프로 구독자들을 대상으로
-  제한적으로 먼저 시작된다.\n우리 일에는: 직접 관련 적
- 음\nhttps://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-
- shop-and-check-out-for-you/\n\n- 게임 개발에 생성형 인공지능
- 을 더 많이 써요 (35점)\n설문조사에 따르면 더 많은 비디
- 오 게임 개발자들이 업무에 생성형 인공지능 도구를 사
- 용하고 있는 것으로 나타났다. 작년보다 사용 비율이 늘
- 어났다.\n우리 일에는: 직접 관련 적음\nhttps://www.theverge.c
- om/games/1032085/gdc-festival-of-gaming-annual-survey-ai-layoffs\n\n[깃
- 허브 인기 도구]\n- 크롬 개발자 도구 MCP - 웹 도구 제어 (
- 31점)\n코딩 에이전트를 위한 크롬 개발자 도구입니다. 
- 웹 관련 작업을 자동화할 수 있습니다.\n우리 일에는: 홈
- 페이지 관리 자동화\nhttps://github.com/ChromeDevTools/chrome-devto
- ols-mcp\n\nAI 요약이라 사실관계는 원본 영상·기사로 확인
-  필요
+SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드로 코딩 없이
+  AI 직원 만들기
+DESCRIPTION:[유튜브]\n1. [한국] 클로드로 코딩 없이 AI 직원 
+ 만들기 (66점)\n클로드(Claude) 데스크탑 앱과 폴더 연결 기
+ 능을 활용해 코딩 없이 AI 에이전트 직원을 만들 수 있습
+ 니다. 카페 사례에서 글 한 줄과 사진 자료를 넣어 인스
+ 타그램 카드뉴스와 영상 콘텐츠를 자동으로 생성하는 
+ 과정이 확인되었습니다. 다만\, 초기 설정 과정이 복잡
+ 하고 컴퓨터 환경에 따라 오류가 발생할 수 있어 숙련도
+ 가 필\n해볼 만한 것: 클로드 데스크탑에 브랜드 폴더를 
+ 연결해 보세요.\n클로드에 적용할 점: 브랜드 소개 파일
+ 과 안내문(MD)을 먼저 읽히고 피드백을 수첩(메모리)에 
+ 기록하게 하세요.\nhttps://www.youtube.com/watch?v=A8GsHLubYwo\n\n2.
+  [한국] 클로드 신기능 7가지로 업무 시간 줄이기 (63점)\n
+ 클로드 2.0 업데이트를 통해 채팅과 파일 작업 통합\, 여
+ 러 세션 동시 실행\, Docs와 Slides 기능을 활용해 엑셀 분
+ 석부터 보고서와 발표용 PPT 작성까지 한 번에 처리할 수
+  있게 되었습니다. 1인 사업자의 반복 문서 작업 시간을 
+ 줄여줄 수 있으나\, 숫자 계산 시 원본 파일과의 교차 검
+ 증 및 로그인 계정에 따른 기\n해볼 만한 것: 클로드 앱
+ 에서 엑셀 파일을 업로드하고 보고서 생성을 요청해보
+ 기\n클로드에 적용할 점: 매출 엑셀을 업로드할 때 취소 
+ 주문 제외 및 상위 상품 계산 기준을 프롬프트로 정확히
+  지시하고 원본과 비교하기\nhttps://www.youtube.com/watch?v=Jdvl
+ qOWEcXs\n\n3. [해외] 알렉스 호모지의 AI 활용법 (61점)\n알렉
+ 스 호모지는 AI 사용 예산이 늘어도 매출이 그대로라면 
+ 중요하지 않은 일에 AI를 쓰기 때문이라고 지적합니다. 
+ 동대문 부자재 1인 사업자는 단순 반복 업무인 블로그 
+ 초안 작성이나 손님 CS 응답에 AI를 쓸 수 있지만\, 진짜 
+ 중요한 가격 결정이나 재고 매입 같은 핵심 판단은 직접
+  해야 합니다.\n해볼 만한 것: 내 업무 중 AI로 자동화할 
+ 가장 작은 반복 업무 하나 찾아보기\n클로드에 적용할 
+ 점: AI에게 글을 시킬 때 '12가지 지켜야 할 규칙'과 '내 
+ 글 16개 샘플'을 함께 주기\nhttps://www.youtube.com/watch?v=dlkZr6
+ 1G6vA\n\n4. [해외] 빅테크 AI 신모델과 소상공인 AI 대중화 (
+ 56점)\n영상에서는 엔비디아(반도체 회사) CEO 사임 소식
+ 과 클로드 Fable 5.2\, 제미나이 4 등 최고 성능 AI 모델 출
+ 시를 다룹니다. 특히 챗GPT '비즈니스(기업 등록)' 기능으
+ 로 가게 정보와 상품 목록을 올려 손님 검색에 노출하고
+ \, 100만 토큰(글자 단위)당 $0.10인 OpenAI 'Decisions API'로 \n
+ 해볼 만한 것: 챗GPT 비즈니스 기능에 매장 정보와 부자
+ 재 리스트를 등록해 노출 상태를 점검해보세요.\n클로드
+ 에 적용할 점: Claude Sheets(클로드 시트) 기능을 써서 부자
+ 재 수량과 단가를 자동 수식이 포함된 표로 정리해 달라
+ 고 요청해보세요.\nhttps://www.youtube.com/watch?v=G_Jrexy_5Bg\n\n5.
+  [해외] 스스로 영상 편집하는 구글 제미나이 4 (52점)\n제
+ 미나이 4 탄소(Carbon) 모델이 29분 영상에서 604개 컷과 50
+ 개 자막·그래픽을 혼자 편집했습니다. 1인 부자재 가게
+ 의 유튜브 쇼츠 제작이나 블로그용 영상 편집을 자동으
+ 로 줄 수 있어 기대됩니다. 하지만 클로드(Claude)로 50~100
+ 개의 AI를 한 번에 자동 실행했다가 구글 계정이 정지된 
+ 사례처럼\, 사용법\n해볼 만한 것: 구글 제미나이에서 짧
+ 은 상품 영상의 무음 구간을 자동으로 잘라내는지 테스
+ 트해보기\n클로드에 적용할 점: Claude에게 작업 자동화를
+  시킬 때 반복 명령이 무한 루프(무한 반복)에 빠지지 않
+ 게 횟수 제한 지시를 꼭 넣기\nhttps://www.youtube.com/watch?v=Sc
+ 6TriRAGnI\n\n[해외 뉴스]\n- 챗GPT 지갑으로 대신 쇼핑하는 AI
+  에이전트 (36점)\n오픈에이아이의 에이전트가 대신 구매
+ 를 해주는 챗GPT 지갑이 나온다. 미국 챗GPT 프로 구독자
+ 를 대상으로 오늘부터 서비스를 시작한다.\n우리 일에는
+ : 쇼핑 자동화 기술의 변화를 볼 수 있으나 직접 쓰긴 어
+ 려움.\nhttps://www.theverge.com/ai-artificial-intelligence/1033425/opena
+ i-chatgpt-wallet\n\n- 아마존의 전 세계 온라인 상품 데이터 
+ 모으기 (19점)\n아마존이 인터넷에서 팔리는 모든 상품의
+  데이터를 모으는 월드 제품 그래프를 만들 계획이다. 
+ 이를 통해 쇼핑몰 이용자가 다른 곳으로 떠나지 않도록 
+ 만들려고 한다.\n우리 일에는: 직접 관련 적음\nhttps://www.
+ theverge.com/tech/1033697/amazon-world-product-graph-ai-search\n\n- 유나
+ 이티드 항공의 AI 에이전트 예약 차단 (16점)\n유나이티드
+  항공이 사이버 보안 위험을 이유로 AI 에이전트의 비행
+ 기표 예약과 관리를 막았다. 고객들은 AI를 이용해 예약
+ 을 할 수 없게 되었다.\n우리 일에는: 직접 관련 적음\nhtt
+ ps://techcrunch.com/2026/11/12/united-airlines-blocks-ai-agents-from-booki
+ ng-flights-citing-cybersecurity-risks/\n\n[깃허브 인기 도구]\n- 베
+ 이라 엔알비디오\, 영상 화질과 속도를 높이기 (55점)\n윈
+ 도우용 비디오 플레이어 및 캡처 도구입니다. 인공지능 
+ 기술로 영상 화질과 프레임을 높여줍니다.\n우리 일에는
+ : 유튜브 쇼츠 롱폼 영상 만들 때 화질을 높이는 데 쓸 
+ 수 있음\nhttps://github.com/Likely7/Veyra-NRVideo\n\n- 코덱스 시큐
+ 리티\, 보안 취약점 찾고 고치기 (29점)\n오픈에이아이의 
+ 코덱스 시큐리티 도구입니다. 보안 취약점을 찾고 검증
+ 하며 고치는 기능을 제공합니다.\n우리 일에는: 직접 쓸 
+ 곳 적음\nhttps://github.com/openai/codex-security\n\n- 플래노에이
+ 터\, 인공지능과 일정을 잡고 검토하기 (29점)\n작업 공간
+ 을 제공하여 인공지능과 소통할 수 있습니다. 코드를 검
+ 토하고 팀과 공유하며 피드백을 보낼 수 있습니다.\n우
+ 리 일에는: 직접 쓸 곳 적음\nhttps://github.com/backnotprop/plann
+ otator\n\n6번 채널 소재: 사장님이 이걸 AI한테 시켜 보면? 
+ 동대문 단추·부자재 신상품 소개 글을 클로드 에이전트
+ 로 자동 생성하기. / 사장님이 이걸 AI한테 시켜 보면? 동
+ 대문 부자재 엑셀 매출 파일을 클로드에 넣고 월간 운영
+  보고서와 PPT를 실제로 만들어 보기 / 사장님이 이걸 AI
+ 한테 시켜 보면? AI 에이전트로 동대문 단골손님 주문 자
+ 동 응답 글 만들기 / 사장님이 이걸 AI한테 시켜 보면? 챗
+ GPT 비즈니스 프로필에 동대문 부자재 상품 목록 파일(CSV
+ )을 올리고 손님 질문 답장을 맡겨보기 / 사장님이 이걸 
+ AI한테 시켜 보면? 가게 상품 홍보 영상 파일에서 어색한
+  멈춤과 쉬는 시간을 스스로 골라내서 지워달라고 하기\
+ n\nAI 요약이라 사실관계는 원본 영상·기사로 확인 필요\
+ n\n[같은 날 앞선 실행]\n[해외 뉴스]\n- 회의 내용 정리를 
+ 도와주는 일레븐랩스 앱 (43점)\n일레븐랩스에서 팀과 기
+ 업을 위한 새로운 회의록 작성 및 받아쓰기 앱을 공개했
+ 다. 업무 중 대화를 기록하고 정리하는 데 도움을 준다.\
+ n우리 일에는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/13
+ /elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/\
+ n\n- 챗GPT 지갑으로 인공지능이 대신 결제해요 (40점)\n챗G
+ PT 지갑 기능으로 인공지능 비서가 사용자를 대신해 쇼
+ 핑하고 결제할 수 있게 되었다. 미국 프로 구독자들을 
+ 대상으로 제한적으로 먼저 시작된다.\n우리 일에는: 직
+ 접 관련 적음\nhttps://techcrunch.com/2026/11/13/chatgpts-new-wallet-l
+ ets-ai-agents-shop-and-check-out-for-you/\n\n- 게임 개발에 생성형 
+ 인공지능을 더 많이 써요 (35점)\n설문조사에 따르면 더 
+ 많은 비디오 게임 개발자들이 업무에 생성형 인공지능 
+ 도구를 사용하고 있는 것으로 나타났다. 작년보다 사용 
+ 비율이 늘어났다.\n우리 일에는: 직접 관련 적음\nhttps://w
+ ww.theverge.com/games/1032085/gdc-festival-of-gaming-annual-survey-ai-layo
+ ffs\n\n[깃허브 인기 도구]\n- 크롬 개발자 도구 MCP - 웹 도
+ 구 제어 (31점)\n코딩 에이전트를 위한 크롬 개발자 도구
+ 입니다. 웹 관련 작업을 자동화할 수 있습니다.\n우리 일
+ 에는: 홈페이지 관리 자동화\nhttps://github.com/ChromeDevTools/c
+ hrome-devtools-mcp\n\nAI 요약이라 사실관계는 원본 영상·기
+ 사로 확인 필요
 END:VEVENT
 END:VCALENDAR
