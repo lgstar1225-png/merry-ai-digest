@@ -19,3 +19,8 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - 일을 시킬 때 요청 사항에 조건과 원하는 결과 모양을 명확하게 나누어 입력하세요. — 출처: [역대급 클로드 실전 사용법 2027](https://www.youtube.com/watch?v=Z2alL7ve3bg) (한국 · 그린코끼리 AI)
 - Claude에게 엑셀 원본 대신 열 이름과 데이터 형태만 전달하여 분석 보고서 양식을 설계하도록 지시하세요. — 출처: [회사 데이터, AI에 그냥 올려도 될까? 원본 없이 Claude Code로 분석](https://www.youtube.com/watch?v=nXpInKYlRfs) (한국 · 시민개발자 구씨)
 - 구체적인 지시문을 작성하고 작업 순서를 명확하게 전달하기 — 출처: [New Claude Fable 5.2 Is Insane (Yes, Again!)](https://www.youtube.com/watch?v=6RAjpFNnST8) (해외 · The AI Advantage)
+
+## 2026-11-16
+- 설정의 디자인 시스템에 우리 가게 로고와 브랜드 색상을 미리 등록해 두고 글을 쓰세요. — 출처: [클로드 쓰고 있다면 무조건 알아야 되는 클로드 아티팩트 2.0 신기능](https://www.youtube.com/watch?v=8HnL9eBZD0M) (한국 · 소소한 AI 입문노트)
+- 클로드에게 도표나 복잡한 그림 작성을 시킬 때는 SVG 코드로 생성하도록 요청해 보세요. — 출처: [IT뉴스 - AI 부정행위 전문직 끝났다, Fable 5.2, MS 365, GPT-6.2 Astra, 젠슨 황 사임, Gemini 4 Carbon & Hydrogen 등](https://www.youtube.com/watch?v=um6UlsOP1M8) (한국 · 조코딩 JoCoding)
+- Claude에게 복잡한 일을 시킬 때는 '하지 말아야 할 행동'이나 경계 조건을 지시문에 명확히 작성하세요. — 출처: [OpenAI's New AI Is Too Powerful To Release](https://www.youtube.com/watch?v=qCE5A2bWZz8) (해외 · The AI Grid)
