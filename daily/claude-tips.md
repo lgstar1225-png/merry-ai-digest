@@ -24,3 +24,9 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - 설정의 디자인 시스템에 우리 가게 로고와 브랜드 색상을 미리 등록해 두고 글을 쓰세요. — 출처: [클로드 쓰고 있다면 무조건 알아야 되는 클로드 아티팩트 2.0 신기능](https://www.youtube.com/watch?v=8HnL9eBZD0M) (한국 · 소소한 AI 입문노트)
 - 클로드에게 도표나 복잡한 그림 작성을 시킬 때는 SVG 코드로 생성하도록 요청해 보세요. — 출처: [IT뉴스 - AI 부정행위 전문직 끝났다, Fable 5.2, MS 365, GPT-6.2 Astra, 젠슨 황 사임, Gemini 4 Carbon & Hydrogen 등](https://www.youtube.com/watch?v=um6UlsOP1M8) (한국 · 조코딩 JoCoding)
 - Claude에게 복잡한 일을 시킬 때는 '하지 말아야 할 행동'이나 경계 조건을 지시문에 명확히 작성하세요. — 출처: [OpenAI's New AI Is Too Powerful To Release](https://www.youtube.com/watch?v=qCE5A2bWZz8) (해외 · The AI Grid)
+
+## 2026-11-17
+- 프로젝트에 반복 지침과 참고 문서를 미리 등록해 두면 매번 길게 설명하지 않아도 됩니다. — 출처: [클로드가 완전히 달라졌습니다. 직장인이 꼭 알아야 할 16가지 기능 총정리 (2026 최신)](https://www.youtube.com/watch?v=NXpLy2b88Cg) (한국 · 이동훈의 루트AI)
+- AI 결과를 확인할 때 비용을 아끼려면 저화질로 먼저 시험해 보고 마음에 들 때 고화질로 최종 완성하세요. — 출처: [Claude just changed EVERYTHING...](https://www.youtube.com/watch?v=pjYntsza2FA) (해외 · Wes Roth)
+- 클로드에게 작업을 시킬 때 결과물의 출력 규칙(예: 날짜 작성 양식 YYYY-MM-DD)을 미리 지정해 주면 정확한 결과를 얻습니다. — 출처: [AI뉴스 - AI 부정행위 못 잡는다, 전문직 종말, Fable 5.2, MS365, GPT-6.2 Astra, 젠슨 황 사임, Gemini 4 Carbon & Hydrogen 등](https://www.youtube.com/watch?v=ZKKP6jbdNbg) (한국 · 조코딩 JoCoding)
+- 지시할 때 목표와 대상 고객, 브랜딩 정보를 구체적으로 입력하세요. — 출처: [The SIMPLEST Way To Make Money Online With Claude AI in 2026](https://www.youtube.com/watch?v=XSehihyKFqw) (해외 · Nate Herk)
