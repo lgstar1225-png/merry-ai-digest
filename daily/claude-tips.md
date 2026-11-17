@@ -30,3 +30,7 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - AI 결과를 확인할 때 비용을 아끼려면 저화질로 먼저 시험해 보고 마음에 들 때 고화질로 최종 완성하세요. — 출처: [Claude just changed EVERYTHING...](https://www.youtube.com/watch?v=pjYntsza2FA) (해외 · Wes Roth)
 - 클로드에게 작업을 시킬 때 결과물의 출력 규칙(예: 날짜 작성 양식 YYYY-MM-DD)을 미리 지정해 주면 정확한 결과를 얻습니다. — 출처: [AI뉴스 - AI 부정행위 못 잡는다, 전문직 종말, Fable 5.2, MS365, GPT-6.2 Astra, 젠슨 황 사임, Gemini 4 Carbon & Hydrogen 등](https://www.youtube.com/watch?v=ZKKP6jbdNbg) (한국 · 조코딩 JoCoding)
 - 지시할 때 목표와 대상 고객, 브랜딩 정보를 구체적으로 입력하세요. — 출처: [The SIMPLEST Way To Make Money Online With Claude AI in 2026](https://www.youtube.com/watch?v=XSehihyKFqw) (해외 · Nate Herk)
+
+## 2026-11-18
+- 클로드 대화창에 /shorts-studio 명령어를 입력해 원하는 프리셋과 훅 구조를 요청하세요. — 출처: [왕초보도 가능한 AI 숏폼 제작! 잘된 쇼츠 그대로 가져와서 내 쇼츠 만드는 법 (힉스필드 + 클로드)](https://www.youtube.com/watch?v=8OXdqlhT0c8) (한국 · 홍아린 AI)
+- AI에게 일을 맡길 때는 내가 원하는 목표를 말로 명확히 풀어 지시하세요. — 출처: [한국인이 설립해 구글, 메타와 경쟁하는 글로벌 유니콘 기업 몰로코 안익진 CEO, 전동환 CTO 인터뷰](https://www.youtube.com/watch?v=iU4K3mN817I) (한국 · 조코딩 JoCoding)
