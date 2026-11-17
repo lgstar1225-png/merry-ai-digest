@@ -73,7 +73,7 @@ def transcript(vid):
 def rss_candidates():
     ns = {'a': 'http://www.w3.org/2005/Atom', 'yt': 'http://www.youtube.com/xml/schemas/2015'}
     candidates = []
-    for name, cid in (CHANNELS if channels is None else channels).items():
+    for name, cid in CHANNELS.items():
         try:
             resp = requests.get('https://www.youtube.com/feeds/videos.xml', params={'channel_id': cid}, timeout=TIMEOUT)
             resp.raise_for_status()

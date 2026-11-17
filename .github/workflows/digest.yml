@@ -17,6 +17,9 @@ on:
         required: false
 permissions:
   contents: read
+concurrency:
+  group: merry-ai-digest
+  cancel-in-progress: false   # 겹치면 먼저 도는 실행이 끝난 뒤 다음 실행이 시작됨
 jobs:
   digest:
     runs-on: ubuntu-24.04
