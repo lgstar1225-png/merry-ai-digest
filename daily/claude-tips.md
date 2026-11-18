@@ -34,3 +34,8 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 ## 2026-11-18
 - 클로드 대화창에 /shorts-studio 명령어를 입력해 원하는 프리셋과 훅 구조를 요청하세요. — 출처: [왕초보도 가능한 AI 숏폼 제작! 잘된 쇼츠 그대로 가져와서 내 쇼츠 만드는 법 (힉스필드 + 클로드)](https://www.youtube.com/watch?v=8OXdqlhT0c8) (한국 · 홍아린 AI)
 - AI에게 일을 맡길 때는 내가 원하는 목표를 말로 명확히 풀어 지시하세요. — 출처: [한국인이 설립해 구글, 메타와 경쟁하는 글로벌 유니콘 기업 몰로코 안익진 CEO, 전동환 CTO 인터뷰](https://www.youtube.com/watch?v=iU4K3mN817I) (한국 · 조코딩 JoCoding)
+
+## 2026-11-19
+- 중요한 작업 마무리가 필요할 때는 Claude의 고급 플랜을 활용해 빠르게 완성하기. — 출처: [1인 혼자 만든 첫 게임으로 출시 3일만에 마케팅비 없이 8억 매출 낸 방법 | 슬롯바운드 개발자 김민님 인터뷰](https://www.youtube.com/watch?v=6_cqj13abyI) (한국 · 조코딩 JoCoding)
+- 복잡한 작업은 긴 지시문 대신 단계별로 나눠서 순서대로 실행하게 지시하기 — 출처: [OpenAI GPT-6.2 Astra is Here - It's Not What You Think](https://www.youtube.com/watch?v=JVHkb8PTMvc) (해외 · Matt Wolfe)
+- 복잡한 3D 모델링이나 도면 조립처럼 단계별 지시가 필요할 때는 세부 순서와 파이썬 코드 확인 과정을 함께 요청하세요. — 출처: [OpenAI JUST made EVERYONE MAD...](https://www.youtube.com/watch?v=tEysfZGzJc8) (해외 · Wes Roth)

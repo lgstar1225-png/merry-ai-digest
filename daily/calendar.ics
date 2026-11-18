@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,7 +127,7 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
@@ -275,7 +275,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261114@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261114T220000
 DTEND;TZID=Asia/Seoul:20261114T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드로 코딩 없이
@@ -403,7 +403,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드로 코딩 없이 AI 직원
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261115@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261115T220000
 DTEND;TZID=Asia/Seoul:20261115T221500
 SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): 클로드를 전담 직원
@@ -475,7 +475,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드를 전담 직원처럼 부
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261116@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261116T220000
 DTEND;TZID=Asia/Seoul:20261116T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 클로드 아티팩트 2.0
@@ -554,7 +554,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 아티팩트 2.0 신기능
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261117@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261117T220000
 DTEND;TZID=Asia/Seoul:20261117T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 2): 클로드 최신 기능 16
@@ -653,7 +653,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 최신 기능 16가지 활
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261118@merry-ai-digest
-DTSTAMP:20261117T232223Z
+DTSTAMP:20261118T231235Z
 DTSTART;TZID=Asia/Seoul:20261118T220000
 DTEND;TZID=Asia/Seoul:20261118T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 왕초보 AI 숏폼 만들
@@ -720,5 +720,79 @@ DESCRIPTION:[유튜브]\n1. [한국] 왕초보 AI 숏폼 만들기 (60점)\
  테 시켜 보면? 부자재 쇼츠 대본을 클로드와 힉스필드로
   만들어 보기\n\nAI 요약이라 사실관계는 원본 영상·기사
  로 확인 필요
+END:VEVENT
+BEGIN:VEVENT
+UID:merry-ai-digest-daily-20261119@merry-ai-digest
+DTSTAMP:20261118T231235Z
+DTSTART;TZID=Asia/Seoul:20261119T220000
+DTEND;TZID=Asia/Seoul:20261119T221500
+SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): PDF 편집과 AI 기능을
+  한 번에\, UPDF 3.0
+DESCRIPTION:[유튜브]\n1. [한국] PDF 편집과 AI 기능을 한 번에\
+ , UPDF 3.0 (64점)\n영상에서는 UPDF 3.0의 10가지 기능을 소개
+ 합니다. 글자와 이미지 직접 수정\, 페이지 합치기와 추
+ 출\, 서명\, 워드나 이미지로 변환\, 스마트폰과 연동되
+ 는 OCR(광학 문자 인식)\, PDF와 대화하며 요약·번역·마인
+ 드맵·북마크 생성 및 AI 검사 기능이 확인됩니다. 어도
+ 비 대비 약 1/5 가격이며 윈도우\, 맥\, iOS\,\n해볼 만한 것
+ : UPDF 무료 버전을 다운로드해 거래처 PDF 카탈로그를 워
+ 드로 변환해보기\nhttps://www.youtube.com/watch?v=5YYk5j7hw4M\n\n2. 
+ [한국] AI로 만든 첫 게임 3일만에 8억 매출 낸 비결 (58점)
+ \n코딩을 모르는 1인 개발자가 ChatGPT Codex\, Gemini\, ElevenLab
+ s 등 일반 AI를 써서 1년 만에 게임을 만들었습니다. 데모
+ (체험판) 버전을 스팀에 올려 400명 동시 접속과 데모 2위
+ 를 기록했고 3일 만에 $627\,592(약 8억 원) 매출을 올렸습
+ 니다. 다만 게임 개발 사례라 의류 부자재 도소매\n해볼 
+ 만한 것: 무료 AI로 부자재 상품 소개글 1건 작성하고 홍
+ 보용 이미지 1장 만들어보기.\n클로드에 적용할 점: 중요
+ 한 작업 마무리가 필요할 때는 Claude의 고급 플랜을 활용
+ 해 빠르게 완성하기.\nhttps://www.youtube.com/watch?v=6_cqj13abyI\n
+ \n3. [해외] 오픈AI의 새 모델\, 아스트라 (50점)\n오픈AI가 G
+ PT-6.2 아스트라와 솔을 공개했습니다. 아스트라는 입력 
+ 토큰 백만 개당 8달러\, 출력 40달러로 이전보다 20% 저렴
+ 합니다. 3D와 디자인 작업에서는 뛰어난 성능을 보였으
+ 나\, 전문가들은 글쓰기와 코딩 능력이 다소 아쉽고 다
+ 루기 까다롭다고 평가했습니다.\n해볼 만한 것: 채팅창
+ 에서 무료 버전으로 가볍게 질문 한 번 해보기\n클로드
+ 에 적용할 점: 복잡한 작업은 긴 지시문 대신 단계별로 
+ 나눠서 순서대로 실행하게 지시하기\nhttps://www.youtube.com/
+ watch?v=JVHkb8PTMvc\n\n4. [해외] 오픈에이아이 새 AI 모델 아스
+ 트라 (39점)\n오픈에이아이(OpenAI)가 발표한 챗GPT-6.2 아스
+ 트라와 솔(Sol)은 ARC-AGI 3에서 100% 점수를 얻고 로봇 제어
+ 와 3D 시뮬레이션에서 뛰어난 성능을 보였습니다. 3D 프
+ 린터용 시계 조립도나 블렌더 연동처럼 디테일한 작업
+ 이 가능합니다. 하지만 글쓰기나 코딩에서는 전작이나 
+ 경쟁사 모델(Claude\, Gemi\n해볼 만한 것: 클로드(Claude)에게
+  3D 디자인 기획이나 블로그 구조 짜기 프롬프트를 테스
+ 트해 보세요.\n클로드에 적용할 점: 복잡한 3D 모델링이
+ 나 도면 조립처럼 단계별 지시가 필요할 때는 세부 순서
+ 와 파이썬 코드 확인 과정을 함께 요청하세요.\nhttps://www
+ .youtube.com/watch?v=tEysfZGzJc8\n\n[해외 뉴스]\n- 스냅챗\, AI로 
+ 쉽게 만드는 AR 필터 (35점)\n스냅챗 개발자들은 클로드 
+ 코드 같은 AI 비서를 통해 말로 쉽게 AR 렌즈를 만들 수 
+ 있게 되었습니다. AI가 처음부터 끝까지 전체 과정을 처
+ 리한다고 스냅챗은 밝혔습니다.\n우리 일에는: 직접 관
+ 련 적음\nhttps://techcrunch.com/2026/11/18/snapchat-now-lets-developers
+ -build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/\n\
+ n- 수노\, AI 음악에 맞춘 영상 제작 기능 추가 (35점)\n수
+ 노는 AI 음악 플랫폼에서 벗어나기 위한 노력으로 이미
+ 지와 비디오 생성 기능을 도입했습니다. 비주얼이라는 
+ 새로운 기능으로 사용자는 AI 노래에 맞춰 자동으로 입
+ 모양이 움직이는 비디오를 만들 수 있습니다.\n우리 일
+ 에는: 직접 관련 적음\nhttps://www.theverge.com/ai-artificial-intel
+ ligence/1036415/suno-visuals-ai-generated-video-images-feature\n\n[깃허
+ 브 인기 도구]\n- n8n - AI 기능이 들어간 자동화 도구 (69점
+ )\n이 도구는 시각적인 화면으로 작업을 자동으로 연결
+ 해 주는 플랫폼입니다. 인공지능 기능과 400개가 넘는 다
+ 양한 앱 연결을 지원합니다.\n우리 일에는: 블로그 글 발
+ 행과 쇼츠 영상 올리기 작업을 자동화할 때 쓸 수 있습
+ 니다.\nhttps://github.com/n8n-io/n8n\n\n6번 채널 소재: 사장님이
+  이걸 AI한테 시켜 보면? PDF 계약서와 거래처 카탈로그를
+  UPDF AI로 요약하고 상품 소개 글 뽑아내기 / 사장님이 이
+ 걸 AI한테 시켜 보면? AI로 단추·지퍼 상품 소개글 작성
+ 과 홍보 쇼츠 영상 만들기 / 사장님이 이걸 AI한테 시켜 
+ 보면? - 오픈AI 신형 아스트라로 쇼핑몰 상품 소개 글을 
+ 직접 써보게 만들기\n\nAI 요약이라 사실관계는 원본 영
+ 상·기사로 확인 필요
 END:VEVENT
 END:VCALENDAR
