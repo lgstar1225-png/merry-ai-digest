@@ -39,3 +39,7 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - 중요한 작업 마무리가 필요할 때는 Claude의 고급 플랜을 활용해 빠르게 완성하기. — 출처: [1인 혼자 만든 첫 게임으로 출시 3일만에 마케팅비 없이 8억 매출 낸 방법 | 슬롯바운드 개발자 김민님 인터뷰](https://www.youtube.com/watch?v=6_cqj13abyI) (한국 · 조코딩 JoCoding)
 - 복잡한 작업은 긴 지시문 대신 단계별로 나눠서 순서대로 실행하게 지시하기 — 출처: [OpenAI GPT-6.2 Astra is Here - It's Not What You Think](https://www.youtube.com/watch?v=JVHkb8PTMvc) (해외 · Matt Wolfe)
 - 복잡한 3D 모델링이나 도면 조립처럼 단계별 지시가 필요할 때는 세부 순서와 파이썬 코드 확인 과정을 함께 요청하세요. — 출처: [OpenAI JUST made EVERYONE MAD...](https://www.youtube.com/watch?v=tEysfZGzJc8) (해외 · Wes Roth)
+
+## 2026-11-20
+- 클로드에게 '한 번 실행 -> 스킬로 저장 -> 루틴 등록' 순서로 정해진 절차와 말투를 학습시켜 일을 맡기세요. — 출처: [클로드 코드에 어사이드 브라우저 붙여 쓰는 법, 반복 루틴 12개와 스킬로 일을 통째로 맡기는 과정](https://www.youtube.com/watch?v=KLR7GoH-Sco) (한국 · 빌더 조쉬 Builder Josh)
+- 한 번에 다 완성하려 하지 말고 단계별 지시문(프롬프트)을 나누어 주며 이전 결과를 이어받게 하기. — 출처: [Insane AI Breakthroughs Nobody Is Talking About](https://www.youtube.com/watch?v=-oA6oLxWpJg) (해외 · Matt Wolfe)
