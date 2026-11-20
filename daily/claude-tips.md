@@ -43,3 +43,8 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 ## 2026-11-20
 - 클로드에게 '한 번 실행 -> 스킬로 저장 -> 루틴 등록' 순서로 정해진 절차와 말투를 학습시켜 일을 맡기세요. — 출처: [클로드 코드에 어사이드 브라우저 붙여 쓰는 법, 반복 루틴 12개와 스킬로 일을 통째로 맡기는 과정](https://www.youtube.com/watch?v=KLR7GoH-Sco) (한국 · 빌더 조쉬 Builder Josh)
 - 한 번에 다 완성하려 하지 말고 단계별 지시문(프롬프트)을 나누어 주며 이전 결과를 이어받게 하기. — 출처: [Insane AI Breakthroughs Nobody Is Talking About](https://www.youtube.com/watch?v=-oA6oLxWpJg) (해외 · Matt Wolfe)
+
+## 2026-11-21
+- 완성 영상을 바로 만들지 말고 '스토리보드 먼저 보기'와 '완성 영상은 아직 만들지 마'를 입력해 중간 단계를 확인하세요 — 출처: [클로드만으로 역대급 AI 영상생성 방법 | 59가지 스타일 무료제공](https://www.youtube.com/watch?v=ukxcoEm2ixo) (한국 · 그린코끼리 AI)
+- AI 모델마다 잘하는 분야가 다르므로 단일 시험 점수보다 내 작업에 직접 테스트해 보세요. — 출처: [Anthropic IPOs, GPT 6.2 Astra Arrives, But There’s a Bigger Story](https://www.youtube.com/watch?v=KGA7B_c_S4s) (해외 · AI Explained)
+- 지시할 때는 '더 간단하게', '더 짧게'처럼 원하는 바를 구체적으로 적으세요. — 출처: [Gemini 4 Neon is ridiculous...](https://www.youtube.com/watch?v=5eON_8rgKzk) (해외 · Matthew Berman)

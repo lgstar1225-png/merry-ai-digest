@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,7 +127,7 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
@@ -275,7 +275,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261114@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261114T220000
 DTEND;TZID=Asia/Seoul:20261114T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드로 코딩 없이
@@ -403,7 +403,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드로 코딩 없이 AI 직원
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261115@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261115T220000
 DTEND;TZID=Asia/Seoul:20261115T221500
 SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): 클로드를 전담 직원
@@ -475,7 +475,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드를 전담 직원처럼 부
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261116@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261116T220000
 DTEND;TZID=Asia/Seoul:20261116T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 클로드 아티팩트 2.0
@@ -554,7 +554,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 아티팩트 2.0 신기능
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261117@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261117T220000
 DTEND;TZID=Asia/Seoul:20261117T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 2): 클로드 최신 기능 16
@@ -653,7 +653,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 최신 기능 16가지 활
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261118@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261118T220000
 DTEND;TZID=Asia/Seoul:20261118T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 왕초보 AI 숏폼 만들
@@ -723,7 +723,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 왕초보 AI 숏폼 만들기 (60점)\
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261119@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261119T220000
 DTEND;TZID=Asia/Seoul:20261119T221500
 SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): PDF 편집과 AI 기능을
@@ -797,7 +797,7 @@ DESCRIPTION:[유튜브]\n1. [한국] PDF 편집과 AI 기능을 한 번에\
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261120@merry-ai-digest
-DTSTAMP:20261119T230812Z
+DTSTAMP:20261120T224900Z
 DTSTART;TZID=Asia/Seoul:20261120T220000
 DTEND;TZID=Asia/Seoul:20261120T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 2026 AI 부업 순위 싹 
@@ -886,5 +886,100 @@ DESCRIPTION:[유튜브]\n1. [한국] 2026 AI 부업 순위 싹 정리 (63
   전화 주문이나 상품 문의 답장을 24시간 대신 받는 음성
   AI 봇 작성을 AI한테 시켜 보면?\n\nAI 요약이라 사실관계
  는 원본 영상·기사로 확인 필요
+END:VEVENT
+BEGIN:VEVENT
+UID:merry-ai-digest-daily-20261121@merry-ai-digest
+DTSTAMP:20261120T224900Z
+DTSTART;TZID=Asia/Seoul:20261121T220000
+DTEND;TZID=Asia/Seoul:20261121T221500
+SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 AI로 모션그
+ 래픽 만들기
+DESCRIPTION:[유튜브]\n1. [한국] 클로드 AI로 모션그래픽 만들
+ 기 (67점)\n그린코끼리 사이트에서 59가지 스타일 중 선택
+ 하고 주제를 넣으면 클로드(Claude)가 바로 영상을 만들어
+  줍니다. 편집 프로그램 없이 텍스트 명령만으로 1분 미
+ 만의 애니메이션 제작이 가능하며\, 일레븐랩스 목소리
+ 와 브루(vrew) 자막 연동도 지원합니다. 다만 유료 AI 툴 
+ 연동과 세부 수정의 한계가 있어 우리 가게 홍보\n해볼 
+ 만한 것: 그린코끼리 사이트에서 무료 스타일 골라 15초 
+ 쇼츠 프롬프트 복사하기\n클로드에 적용할 점: 완성 영
+ 상을 바로 만들지 말고 '스토리보드 먼저 보기'와 '완성 
+ 영상은 아직 만들지 마'를 입력해 중간 단계를 확인하세
+ 요\nhttps://www.youtube.com/watch?v=ukxcoEm2ixo\n\n2. [한국] 무료 AI 
+ 피클 활용법 (61점)\n피클은 앱스토어 생산성 무료 앱 1위
+  AI 비서입니다. 말 한마디로 회식 12명 예약\, 홈택스 체
+ 크카드 사용액 조회\, 쿠팡 최저가 비교 및 주문\, 이메
+ 일 기반 구독 고정지출 정리를 자동으로 처리합니다. 다
+ 만 홈택스 지난달 조회 제한과 간편인증 유지 한계가 있
+ 어 실제 업무 적용 시 추가 확인이 필요합니다.\n해볼 만
+ 한 것: 스마트폰에 피클 앱을 설치하고 이메일을 연결해
+  구독 고정지출 정리 기능부터 써보기\nhttps://www.youtube.co
+ m/watch?v=QZYe_NdRMWs\n\n3. [해외] 서버 보안과 디자인 도구 (50
+ 점)\n2015년 이후 배포된 서버에서 HTTP/2 흐름 제어와 자바
+ (Java) 디코딩 관련 원격 코드 실행 취약점이 발견되었습
+ 니다. 174개 웹사이트가 멀웨어에 감염되어 약 7\,500달러 
+ 피해를 입었습니다. 동대문 도소매 사업자의 홈페이지
+ 와 블로그 운영 시 사용 중인 서버와 오픈소스 버전 확
+ 인이 필요합니다.\n해볼 만한 것: 현재 사용 중인 웹 서
+ 버와 오픈소스 버전 확인하기\nhttps://www.youtube.com/watch?v=r
+ MaMe32qQkA\n\n4. [해외] AI 모델의 성과와 안전성 이야기 (50
+ 점)\nOpenAI의 GPT-6.2는 코드 검토에서 70% 성공률을 보였고\
+ , 연구원 업무를 3개월에서 1개월로 줄여주었습니다. 하
+ 지만 영상은 기술 소식 위주라 동대문 부자재 1인 가게
+ 의 블로그나 쇼츠 제작에 바로 쓸 기능은 없습니다. AI 
+ 평가 점수(벤치마크: 성능 시험)만 믿기보다 내 업무에 
+ 맞는 AI를 직접 써보고 확인해야 \n해볼 만한 것: Claude와 
+ ChatGPT에 상품 설명글 작성을 각각 시켜보고 결과 비교해
+  보기\n클로드에 적용할 점: AI 모델마다 잘하는 분야가 
+ 다르므로 단일 시험 점수보다 내 작업에 직접 테스트해 
+ 보세요.\nhttps://www.youtube.com/watch?v=KGA7B_c_S4s\n\n5. [해외] 구
+ 글의 신작 인공지능 제미나이 4 네온 (45점)\n구글이 새로
+  공개한 인공지능 제미나이 4 네온은 다양한 성능 평가
+ 에서 높은 점수를 기록했습니다. 3D 실험 시뮬레이션과 
+ 코딩 작업에서 뛰어난 능력을 보여주었으나 동대문 1인 
+ 사업자의 실제 업무에 바로 적용하기는 아직 검증이 필
+ 요합니다.\n해볼 만한 것: 제미나이 무료 버전으로 간단
+ 한 상품 설명 글 써보기\n클로드에 적용할 점: 지시할 때
+ 는 '더 간단하게'\, '더 짧게'처럼 원하는 바를 구체적으
+ 로 적으세요.\nhttps://www.youtube.com/watch?v=5eON_8rgKzk\n\n[해외 
+ 뉴스]\n- 내 컴퓨터를 대신 쓰는 구글 제미나이 (42점)\n구
+ 글 제미나이가 업데이트되어 맥 컴퓨터에서 파일을 정
+ 리하고 양식을 채울 수 있게 되었습니다. 여러 단계를 
+ 거치는 일을 알아서 처리해 주는 인공지능 비서 기능입
+ 니다.\n우리 일에는: 컴퓨터 업무를 자동화하는 데 도움
+ 이 될 수 있으나 아직 우리 부자재 일에 바로 쓰긴 어렵
+ 습니다.\nhttps://techcrunch.com/2026/11/19/google-gives-gemini-the-abil
+ ity-to-use-your-mac-for-you/\n\n- 내 화면을 못 보게 막는 시그
+ 널 (22점)\n메신저 앱 시그널이 폰 화면을 캡처하는 기능
+ 을 막기 시작했습니다. 인공지능이 사용자의 메시지와 
+ 정보를 몰래 읽는 것을 막기 위한 조치입니다.\n우리 일
+ 에는: 직접 관련 적음\nhttps://www.theverge.com/ai-artificial-intel
+ ligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app\n\n- 구
+ 글 첫 화면에 들어간 인공지능 대화 (22점)\n구글이 검색 
+ 첫 화면에 인공지능 검색과 대화 기능을 넣는 업데이트
+ 를 합니다. 사용자는 화면 옆에 생긴 작은 창을 열어 인
+ 공지능과 대화를 계속 이어갈 수 있습니다.\n우리 일에
+ 는: 직접 관련 적음\nhttps://www.theverge.com/tech/1038059/google-se
+ arch-homepage-ai-chats\n\n[깃허브 인기 도구]\n- AFFiNE: 차세대 
+ 지식 관리 및 협업 도구 (50점)\n계획\, 분류\, 제작을 하
+ 나로 모은 차세대 지식 저장소입니다. 사생활 보호를 우
+ 선하며 맞춤 설정이 가능합니다.\n우리 일에는: 블로그 
+ 글감과 상품 자료를 한곳에 모아 정리할 때 씁니다.\nhttp
+ s://github.com/toeverything/AFFiNE\n\n- CLI-Anything: 모든 프로그램
+ 을 에이전트로 (24점)\n모든 소프트웨어를 AI 에이전트가 
+ 쓸 수 있게 바꿔줍니다. CLI-Hub를 통해 관련 기능을 제공
+ 합니다.\n우리 일에는: 직접 쓸 곳 적음\nhttps://github.com/HK
+ UDS/CLI-Anything\n\n- OpenVINO: AI 모델 최적화와 실행 도구 (24
+ 점)\nAI 모델을 최적화하고 배포하기 위한 오픈소스 툴킷
+ 입니다. 인공지능 추론 성능을 높여줍니다.\n우리 일에
+ 는: 직접 쓸 곳 적음\nhttps://github.com/openvinotoolkit/openvino\n\
+ n6번 채널 소재: 사장님이 이걸 AI한테 시켜 보면? 동대문
+  부자재 신상품 소개를 1분 모션그래픽 쇼츠로 만들어 
+ 달라고 클로드에게 시켜봤습니다 / 사장님이 이걸 AI한
+ 테 시켜 보면? 피클로 동대문 도소매 부자재 거래처와의
+  미팅 일정을 비서끼리 대화로 자동 조율해 보기 / 사장
+ 님이 이걸 AI한테 시켜 보면? 제미나이 4 네온으로 우리 
+ 가게 신상품 소개 글 써달라고 해보기\n\nAI 요약이라 사
+ 실관계는 원본 영상·기사로 확인 필요
 END:VEVENT
 END:VCALENDAR
