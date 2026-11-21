@@ -48,3 +48,8 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - 완성 영상을 바로 만들지 말고 '스토리보드 먼저 보기'와 '완성 영상은 아직 만들지 마'를 입력해 중간 단계를 확인하세요 — 출처: [클로드만으로 역대급 AI 영상생성 방법 | 59가지 스타일 무료제공](https://www.youtube.com/watch?v=ukxcoEm2ixo) (한국 · 그린코끼리 AI)
 - AI 모델마다 잘하는 분야가 다르므로 단일 시험 점수보다 내 작업에 직접 테스트해 보세요. — 출처: [Anthropic IPOs, GPT 6.2 Astra Arrives, But There’s a Bigger Story](https://www.youtube.com/watch?v=KGA7B_c_S4s) (해외 · AI Explained)
 - 지시할 때는 '더 간단하게', '더 짧게'처럼 원하는 바를 구체적으로 적으세요. — 출처: [Gemini 4 Neon is ridiculous...](https://www.youtube.com/watch?v=5eON_8rgKzk) (해외 · Matthew Berman)
+
+## 2026-11-22
+- 클로드 듀엣은 백그라운드 작업 시 질문 사용량을 함께 소비하므로 잔여 횟수를 확인하며 일을 시키세요. — 출처: [AI News: This Is The Make or Break Week!!](https://www.youtube.com/watch?v=wqNIzUmNt9M) (해외 · Matt Wolfe)
+- 디자인이나 표 작업을 시킬 때 우리 회사의 디자인 시스템이나 명확한 맥락(기준, 예산 등)을 먼저 제공하고 지시하세요. — 출처: [클로드 아티팩트 2.0 총정리! 사무업무, 이제 클로드 안에서 다 끝내세요](https://www.youtube.com/watch?v=WwxqgxdLg-E) (한국 · 시민개발자 구씨)
+- 클로드에 힉스필드 커넥터(MCP)를 연결하면 대화창에서 대본 수정부터 영상 생성 지시까지 한번에 가능합니다. — 출처: [초보도 쉽게 만드는 AI 숏 드라마 제작 방법 (힉스필드 웹 vs 클로드 MCP 제작 비용, 시간 비교)](https://www.youtube.com/watch?v=aColesXR2ow) (한국 · 디지털거북이)
