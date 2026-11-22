@@ -53,3 +53,9 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - 클로드 듀엣은 백그라운드 작업 시 질문 사용량을 함께 소비하므로 잔여 횟수를 확인하며 일을 시키세요. — 출처: [AI News: This Is The Make or Break Week!!](https://www.youtube.com/watch?v=wqNIzUmNt9M) (해외 · Matt Wolfe)
 - 디자인이나 표 작업을 시킬 때 우리 회사의 디자인 시스템이나 명확한 맥락(기준, 예산 등)을 먼저 제공하고 지시하세요. — 출처: [클로드 아티팩트 2.0 총정리! 사무업무, 이제 클로드 안에서 다 끝내세요](https://www.youtube.com/watch?v=WwxqgxdLg-E) (한국 · 시민개발자 구씨)
 - 클로드에 힉스필드 커넥터(MCP)를 연결하면 대화창에서 대본 수정부터 영상 생성 지시까지 한번에 가능합니다. — 출처: [초보도 쉽게 만드는 AI 숏 드라마 제작 방법 (힉스필드 웹 vs 클로드 MCP 제작 비용, 시간 비교)](https://www.youtube.com/watch?v=aColesXR2ow) (한국 · 디지털거북이)
+
+## 2026-11-23
+- 업무를 시킬 때 원본 수정 금지와 숫자 확인 지시를 함께 적어 정확도를 높이세요. — 출처: [퇴근시간이 달라집니다! 클로드 업무자동화, 이렇게 쓰는 겁니다 (무료프롬프트 제공)](https://www.youtube.com/watch?v=BR5ky8KFWko) (한국 · 해피AI | 이진규)
+- 디자인북마크 사이트처럼 완성된 UI 요소의 프롬프트를 클로드에 복사해 웹페이지 제작에 활용하세요. — 출처: [IT뉴스 - 리만가설 증명됐다, GPT-6.2 Astra, Gemini 4 Neon, Inkling 2 Mini, Qwen4-Max, FSD v15 등](https://www.youtube.com/watch?v=hMXOsa3eO-8) (한국 · 조코딩 JoCoding)
+- AI 모델을 바꿀 때는 동일한 프롬프트(지시문)를 입력해 결과물의 완성도와 비용을 직접 비교해 보세요. — 출처: [Google Is BACK (Gemini 4 Neon Tested)](https://www.youtube.com/watch?v=NLNoZrzXrvU) (해외 · Nate Herk)
+- 여러 AI 모델에 동일 업무를 독립적으로 검토시키고 오류를 찾아내게 하는 지시 방식을 활용해보세요. — 출처: [AI just BROKE SaaS...](https://www.youtube.com/watch?v=AxQE_ash8b8) (해외 · Wes Roth)
