@@ -59,3 +59,7 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 - 디자인북마크 사이트처럼 완성된 UI 요소의 프롬프트를 클로드에 복사해 웹페이지 제작에 활용하세요. — 출처: [IT뉴스 - 리만가설 증명됐다, GPT-6.2 Astra, Gemini 4 Neon, Inkling 2 Mini, Qwen4-Max, FSD v15 등](https://www.youtube.com/watch?v=hMXOsa3eO-8) (한국 · 조코딩 JoCoding)
 - AI 모델을 바꿀 때는 동일한 프롬프트(지시문)를 입력해 결과물의 완성도와 비용을 직접 비교해 보세요. — 출처: [Google Is BACK (Gemini 4 Neon Tested)](https://www.youtube.com/watch?v=NLNoZrzXrvU) (해외 · Nate Herk)
 - 여러 AI 모델에 동일 업무를 독립적으로 검토시키고 오류를 찾아내게 하는 지시 방식을 활용해보세요. — 출처: [AI just BROKE SaaS...](https://www.youtube.com/watch?v=AxQE_ash8b8) (해외 · Wes Roth)
+
+## 2026-11-24
+- 복잡한 논리·증명 작업 시 클로드에게 정리된 체계적 언어(Lean 코드 방식)나 단계별 검증 절차를 제시하며 작성하게 지시하기. — 출처: [[AI 뉴스] GPT-6.2가 출시하자마자 미친듯이 까이는 이유 (리만 가설 증명, Gemini 4, ChatGPT Wallet, 애플 자체 에이전트, 앤트로픽 IPO)](https://www.youtube.com/watch?v=EDf7E2Vho1M) (한국 · 알린 ALINN)
+- 복잡한 작업을 작은 단위로 쪼개어 AI에게 단계별로 지시하기 — 출처: [Claude AI Solved The Secret Of Black Holes](https://www.youtube.com/watch?v=1jPdehG3Hms) (해외 · Two Minute Papers)
