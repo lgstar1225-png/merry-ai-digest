@@ -63,3 +63,7 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 ## 2026-11-24
 - 복잡한 논리·증명 작업 시 클로드에게 정리된 체계적 언어(Lean 코드 방식)나 단계별 검증 절차를 제시하며 작성하게 지시하기. — 출처: [[AI 뉴스] GPT-6.2가 출시하자마자 미친듯이 까이는 이유 (리만 가설 증명, Gemini 4, ChatGPT Wallet, 애플 자체 에이전트, 앤트로픽 IPO)](https://www.youtube.com/watch?v=EDf7E2Vho1M) (한국 · 알린 ALINN)
 - 복잡한 작업을 작은 단위로 쪼개어 AI에게 단계별로 지시하기 — 출처: [Claude AI Solved The Secret Of Black Holes](https://www.youtube.com/watch?v=1jPdehG3Hms) (해외 · Two Minute Papers)
+
+## 2026-11-25
+- AI에게 작업을 맡길 때 원하는 스타일과 배경을 한 번에 기억하도록 맞춤 설정 지침을 미리 적어두고 지시하기 — 출처: [2026 어도비 역대급 AI 신기능 총정리, 파이어플라이 플랜 모드부터 개체 편집·텍스트 편집까지 직접 써 봤습니다](https://www.youtube.com/watch?v=CCFNYANLKGk) (한국 · 빌더 조쉬 Builder Josh)
+- 캐릭터를 고정할 때 참고할 기존 인기 영상의 특징이나 캡처 이미지를 함께 제시하고 단계별로 수정하기 — 출처: [클로드로 AI 쇼츠 자동화! 왕초보도 가능한 애니메이션 숏폼 완성 (+프롬프트 공개) | 클로드 & 힉스필드 MCP](https://www.youtube.com/watch?v=zSmy-x6lTn0) (한국 · 홍아린 AI)
