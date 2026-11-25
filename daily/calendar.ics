@@ -16,7 +16,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261111@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261111T220000
 DTEND;TZID=Asia/Seoul:20261111T221500
 SUMMARY:AI 뉴스 3편: 클로드 페이블 5.2
@@ -49,7 +49,7 @@ DESCRIPTION:1. 클로드 페이블 5.2 (45점)\n앤스로픽(Anthropic)에
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261112@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261112T220000
 DTEND;TZID=Asia/Seoul:20261112T221500
 SUMMARY:AI 뉴스(영상 1·기사 3·도구 2): 새로운 AI 모델과 소
@@ -127,7 +127,7 @@ DESCRIPTION:[유튜브]\n1. 새로운 AI 모델과 소식 모음 (56점)\n
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261113@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261113T220000
 DTEND;TZID=Asia/Seoul:20261113T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 코드 2.0 업
@@ -275,7 +275,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 코드 2.0 업데이트 총
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261114@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261114T220000
 DTEND;TZID=Asia/Seoul:20261114T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드로 코딩 없이
@@ -403,7 +403,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드로 코딩 없이 AI 직원
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261115@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261115T220000
 DTEND;TZID=Asia/Seoul:20261115T221500
 SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): 클로드를 전담 직원
@@ -475,7 +475,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드를 전담 직원처럼 부
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261116@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261116T220000
 DTEND;TZID=Asia/Seoul:20261116T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 클로드 아티팩트 2.0
@@ -554,7 +554,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 아티팩트 2.0 신기능
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261117@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261117T220000
 DTEND;TZID=Asia/Seoul:20261117T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 2): 클로드 최신 기능 16
@@ -653,7 +653,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 최신 기능 16가지 활
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261118@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261118T220000
 DTEND;TZID=Asia/Seoul:20261118T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 왕초보 AI 숏폼 만들
@@ -723,7 +723,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 왕초보 AI 숏폼 만들기 (60점)\
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261119@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261119T220000
 DTEND;TZID=Asia/Seoul:20261119T221500
 SUMMARY:AI 뉴스(영상 4·기사 2·도구 1): PDF 편집과 AI 기능을
@@ -797,7 +797,7 @@ DESCRIPTION:[유튜브]\n1. [한국] PDF 편집과 AI 기능을 한 번에\
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261120@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261120T220000
 DTEND;TZID=Asia/Seoul:20261120T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 2026 AI 부업 순위 싹 
@@ -889,7 +889,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 2026 AI 부업 순위 싹 정리 (63
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261121@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261121T220000
 DTEND;TZID=Asia/Seoul:20261121T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 3): 클로드 AI로 모션그
@@ -984,7 +984,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드 AI로 모션그래픽 만들
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261122@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261122T220000
 DTEND;TZID=Asia/Seoul:20261122T221500
 SUMMARY:AI 뉴스(영상 5·기사 3·도구 0): 주간 AI 뉴스와 최신
@@ -1070,7 +1070,7 @@ DESCRIPTION:[유튜브]\n1. [해외] 주간 AI 뉴스와 최신 도구 총
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261123@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261123T220000
 DTEND;TZID=Asia/Seoul:20261123T221500
 SUMMARY:AI 뉴스(영상 5·기사 2·도구 3): 클로드로 엑셀과 보
@@ -1163,7 +1163,7 @@ DESCRIPTION:[유튜브]\n1. [한국] 클로드로 엑셀과 보고서 한
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261124@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261124T220000
 DTEND;TZID=Asia/Seoul:20261124T221500
 SUMMARY:AI 뉴스(영상 5·기사 2·도구 1): AI 최신 뉴스: 수학·
@@ -1240,7 +1240,7 @@ DESCRIPTION:[유튜브]\n1. [한국] AI 최신 뉴스: 수학·자율주행
 END:VEVENT
 BEGIN:VEVENT
 UID:merry-ai-digest-daily-20261125@merry-ai-digest
-DTSTAMP:20261124T225336Z
+DTSTAMP:20261125T230753Z
 DTSTART;TZID=Asia/Seoul:20261125T220000
 DTEND;TZID=Asia/Seoul:20261125T221500
 SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 2026 어도비 AI 신기
@@ -1313,5 +1313,79 @@ DESCRIPTION:[유튜브]\n1. [한국] 2026 어도비 AI 신기능 (65점)\n
  장이 클로드와 힉스필드로 60초 상품 소개 애니메이션 
  쇼츠를 직접 만들어 보기\n\nAI 요약이라 사실관계는 원
  본 영상·기사로 확인 필요
+END:VEVENT
+BEGIN:VEVENT
+UID:merry-ai-digest-daily-20261126@merry-ai-digest
+DTSTAMP:20261125T230753Z
+DTSTART;TZID=Asia/Seoul:20261126T220000
+DTEND;TZID=Asia/Seoul:20261126T221500
+SUMMARY:AI 뉴스(영상 4·기사 3·도구 1): 어도비 MAX 2026 파이
+ 어플라이 신기능
+DESCRIPTION:[유튜브]\n1. [한국] 어도비 MAX 2026 파이어플라이 
+ 신기능 (67점)\n어도비 파이어플라이에서 브랜드 키트를 
+ 만들어 로고·색상 팔레트를 저장하고\, 플랜 모드로 작
+ 업 계획을 세운 뒤 제품 목업·포스터·광고 영상을 생성
+ 할 수 있습니다. 개체 편집으로 색상 변경과 오브젝트 
+ 회전이 가능하며\, 텍스트 편집으로 문구만 바꿀 수 있
+ 습니다. 우리 일인 부자재 상세페이지나 쇼츠 제작에 응
+ 용 가능하나\, 유료 \n해볼 만한 것: 어둡이 파이어플라
+ 이에서 브랜드 키트 만들기 무료 체험\n클로드에 적용할
+  점: 브랜드 키트를 만들 때 로고 컨셉\, 선호 색상\, 타
+ 깃 고객층을 구체적인 키워드로 나누어 번호 순서대로 
+ 지시하세요.\nhttps://www.youtube.com/watch?v=B7MzPzTNHwk\n\n2. [한
+ 국] 깃허브 오픈소스 5개 활용 가이드 (60점)\n깃허브는 
+ 전 세계 개발자들이 프로그램을 공유하는 드라이브입니
+ 다. 영상에서는 PDF 합치기(Stirling-PDF)\, 영상 자막 편집(Op
+ enCut)\, AI 목소리(VoiceStudio)\, PPT 자동화(ppt-master)\, 반응 
+ 조사(last30days) 5가지를 소개했습니다. 우리 가게 블로그
+ 와 쇼츠 제작에 쓸 수 있\n해볼 만한 것: Stirling-PDF를 다
+ 운로드해 PDF 파일을 합쳐보기\n클로드에 적용할 점: 깃
+ 허브 저장소 주소를 클로드에게 주고 '이 폴더를 내 컴
+ 퓨터에 설치해 줘'라고 명확한 작업 지시문과 순서를 적
+ 어 요청하기\nhttps://www.youtube.com/watch?v=bcaulLqQgq4\n\n3. [해
+ 외] 클로드 AI의 수학 난제 해결 (26점)\n인류가 풀지 못했
+ 던 리만 가설의 해답을 클로드가 35일 만에 1\,700만 줄의 
+ 코드로 증명했습니다. 하지만 현재 동대문 의류 도소매 
+ 1인 사업자가 바로 적용할 만한 실질적 기능은 없으며 
+ 학술적 연구 단계입니다.\n해볼 만한 것: 클로드를 이용
+ 한 쇼핑몰 상품 소개 글 작성 연습\nhttps://www.youtube.com/wat
+ ch?v=hwWlEuI359w\n\n4. [해외] AI가 푼 수학 난제? (16점)\nAI(인
+ 공지능)와 사람이 함께 1700만 줄의 코드를 만들어 167년 
+ 된 리만 가설 증명을 발표했으나\, 검증 과정에서 AI가 
+ 만든 빈 코드와 오류가 발견되어 논란이 되었습니다. 동
+ 대문 도소매 사업인 우리 일과는 직접 연관이 없는 순수
+  연구 주제입니다.\n해볼 만한 것: 해당 없음\nhttps://www.yo
+ utube.com/watch?v=Jatwf_XOncE\n\n[해외 뉴스]\n- 통화 녹음하고 
+ 요약해 주는 AI 이어폰 (35점)\n낫싱(Nothing)이 12월 8일 출
+ 시를 앞두고 AI 이어폰과 충전 케이스를 공개했다. 이어
+ 폰은 통화를 녹음하고 충전 케이스는 대화를 녹음\, 전
+ 사\, 요약하는 기능을 제공한다.\n우리 일에는: 직접 관
+ 련 적음\nhttps://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-e
+ arbuds-reveal\n\n- 챗GPT\, 대화와 업무 기능 하나로 합친다 (3
+ 0점)\n오픈에이아이(OpenAI)가 채팅과 업무 경험을 하나로 
+ 통합하면서 챗GPT 헤비 유저들이 사용량 제한에 더 빨리 
+ 도달할 수 있다고 밝혔다. 이번 조치로 사용자는 하나의
+  사용량 측정기를 통해 서비스를 이용하게 된다.\n우리 
+ 일에는: 직접 관련 적음\nhttps://techcrunch.com/2026/11/25/openai-
+ says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/
+ \n\n- 타이달\, AI가 만든 음악 수백만 곡 삭제한다 (30점)\n
+ 타이달은 음악 스트리밍 서비스에 AI로 만든 음악이 넘
+ 쳐남에 따라 완전한 AI 생성 트랙을 금지하고 삭제할 것
+ 이라고 밝혔다. 다만 AI의 도움을 받아 만든 곡은 계속 
+ 허용할 예정이다.\n우리 일에는: 직접 관련 적음\nhttps://t
+ echcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-
+ tracks-as-ai-slop-inundates-music-streaming/\n\n[깃허브 인기 도구]\
+ n- Tracer-Cloud - 프로그램 배포를 돕는 AI 도구 (35점)\n프로
+ 그램을 안전하게 배포하고 관리하는 데 도움을 주는 오
+ 픈소스 인공지능 에이전트입니다. 프로그램의 오류를 
+ 줄이고 안정적으로 작동하는지 확인하는 역할을 합니다
+ .\n우리 일에는: 직접 쓸 곳 적음\nhttps://github.com/Tracer-Clou
+ d/opensre\n\n6번 채널 소재: 사장님이 이걸 AI한테 시켜 보
+ 면? 어도비 파이어플라이로 우리 가게 부자재 홍보 포스
+ 터와 텀블러 목업 만들기 / 사장님이 이걸 AI한테 시켜 
+ 보면? 깃허브에서 무료 오픈소스 프로그램을 찾아 클로
+ 드에게 설치를 부탁해 가게 블로그용 PDF 자료를 10분 만
+ 에 PPT로 바꿔 보기\n\nAI 요약이라 사실관계는 원본 영상
+ ·기사로 확인 필요
 END:VEVENT
 END:VCALENDAR
