@@ -75,3 +75,6 @@ AI 요약이라 실제 적용 전 원본 영상으로 확인 필요.
 ## 2026-11-27
 - 결과물을 만들 때 템플릿 대신 일반 대화창에서 아티팩트로 생성하고 '앱으로 설치' 메뉴를 누르세요. — 출처: [Claude Artifacts Just Got a Huge Upgrade](https://www.youtube.com/watch?v=O_-QoxNBDX0) (해외 · Nate Herk)
 - 설정 가이드 파일을 만들어 클로드 코드에게 한 단계씩 안내하며 셋업을 요청하기 — 출처: [비개발자용 클로드 코드 24시간 셋업 가이드! 내 서버에 올리고 휴대폰으로 일 시키세요](https://www.youtube.com/watch?v=5alumheUcXk) (한국 · 시민개발자 구씨)
+
+## 2026-11-28
+- 표 데이터를 분석할 때는 원하는 부분만 드래그하여 말로 편하게 요청하세요. — 출처: [이래서 다들 클로드 클로드 하는구나.. 새롭게 추가된 클로드 신기능 7가지 활용법](https://www.youtube.com/watch?v=4UHg1RTHshU) (한국 · 알린 ALINN)
